@@ -119,6 +119,7 @@ namespace Enigma
 
             Vector2 size = contentParent.GetComponent<RectTransform>().sizeDelta;
             size.y = Mathf.Abs(y + spaceBetweenItems);
+            //contentParent.GetComponent<RectTransform>().position = new Vector3(-30f, 0f, 0f);
             contentParent.GetComponent<RectTransform>().sizeDelta = size;
         }
 
@@ -142,6 +143,7 @@ namespace Enigma
 
         void openInventory()
         {
+            Cursor.visible = true;
             LeanTween.moveX(this.gameObject.GetComponent<RectTransform>(), openX, transitionSpeed);
 
             if (Opened != null)
@@ -150,6 +152,7 @@ namespace Enigma
 
         void closeInventory()
         {
+            Cursor.visible = false;
             LeanTween.moveX(this.gameObject.GetComponent<RectTransform>(), 0f, transitionSpeed);
 
             if (Closed != null)

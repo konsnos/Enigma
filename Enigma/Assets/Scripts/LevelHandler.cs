@@ -7,6 +7,9 @@ using System.Collections.Generic;
 public class LevelHandler : MonoBehaviour 
 {
     FirstPersonController fpsController;
+    /// <summary>
+    /// Used to dynamically add items to the inventory.
+    /// </summary>
     public List<GameObject> itemToAdd;
 
 	void Awake ()
