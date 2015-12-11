@@ -64,7 +64,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            //TODO: if control is not over ui.
             if(IsActive)
             {
                 RotateView();

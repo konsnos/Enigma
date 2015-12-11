@@ -39,6 +39,8 @@ namespace Enigma
                 if(tempItem)
                 {
                     Inventory.Singleton.AddItem(tempItem);
+                    if(tempItem.PopUpMessage != "" || tempItem.PopUpSprite != null)
+                        UIHandler.Singleton.ShowPopUp(tempItem.PopUpMessage, tempItem.PopUpSprite);
                     Destroy(hit.transform.gameObject);
                     break;
                 }

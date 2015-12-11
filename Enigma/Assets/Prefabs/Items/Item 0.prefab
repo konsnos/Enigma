@@ -89,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   icon: {fileID: 21300000, guid: 4a0e98175b51ada4c8fb258cb5d8a5e2, type: 3}
+  popUpMessage: yo
+  popUpSprite: {fileID: 21300000, guid: 4a0e98175b51ada4c8fb258cb5d8a5e2, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -98,6 +100,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a0e98175b51ada4c8fb258cb5d8a5e2,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: popUpMessage
+      value: yo
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: popUpSprite
       value: 
       objectReference: {fileID: 21300000, guid: 4a0e98175b51ada4c8fb258cb5d8a5e2,
         type: 3}

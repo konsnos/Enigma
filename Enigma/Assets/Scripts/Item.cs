@@ -8,6 +8,10 @@ namespace Enigma
         private int id;
         [SerializeField]
         private Sprite icon;
+        [SerializeField]
+        private string popUpMessage = "";
+        [SerializeField]
+        private Sprite popUpSprite;
 
         private GameObject instancedObject;
 
@@ -19,6 +23,16 @@ namespace Enigma
         public Sprite Icon
         {
             get { return icon; }
+        }
+
+        public string PopUpMessage
+        {
+            get { return popUpMessage; }
+        }
+
+        public Sprite PopUpSprite
+        {
+            get { return popUpSprite; }
         }
     }
 }

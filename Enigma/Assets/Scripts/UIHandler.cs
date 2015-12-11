@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour 
 {
@@ -14,15 +15,32 @@ public class UIHandler : MonoBehaviour
     /// </summary>
     [SerializeField]
     private GameObject PopUpPanel;
+    /// <summary>
+    /// Image reference for the pop up image.
+    /// </summary>
+    [SerializeField]
+    private Image popUpImg;
+    /// <summary>
+    /// Image reference for the pop up text.
+    /// </summary>
+    [SerializeField]
+    private Text popUpText;
 
     void Awake()
     {
         Singleton = this;
     }
 
-    public void ShowPopUp()
+    public void ShowPopUp(string message, Sprite image)
     {
         PopUpPanel.SetActive(true);
+
+        popUpText.text = message;
+        if (image != null)
+        {
+            popUpImg.sprite = image;
+            popUpImg.SetNativeSize();
+        }
 
         if (OnShow != null)
             OnShow();
