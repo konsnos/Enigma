@@ -35,11 +35,11 @@ namespace Enigma
         /// </summary>
         private List<GameObject> itemContents;
 
-        private bool inventoryActive;
+        private bool isShown;
 
-        public bool InventoryActive
+        public bool IsShown
         {
-            get { return inventoryActive; }
+            get { return isShown; }
         }
 
         [SerializeField]
@@ -51,10 +51,13 @@ namespace Enigma
         {
             Singleton = this;
 
-            inventoryActive = false;
+            isShown = false;
 
             itemContents = new List<GameObject>(10);
+        }
 
+        void Start()
+        {
             closeInventory();
         }
 
@@ -132,9 +135,9 @@ namespace Enigma
         {
             if (Input.GetKeyUp(KeyCode.I))
             {
-                inventoryActive = !inventoryActive;
+                isShown = !isShown;
 
-                if (inventoryActive)
+                if (isShown)
                     openInventory();
                 else
                     closeInventory();
@@ -143,7 +146,6 @@ namespace Enigma
 
         void openInventory()
         {
-            Cursor.visible = true;
             LeanTween.moveX(this.gameObject.GetComponent<RectTransform>(), openX, transitionSpeed);
 
             if (Opened != null)
@@ -152,7 +154,6 @@ namespace Enigma
 
         void closeInventory()
         {
-            Cursor.visible = false;
             LeanTween.moveX(this.gameObject.GetComponent<RectTransform>(), 0f, transitionSpeed);
 
             if (Closed != null)

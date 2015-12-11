@@ -21,6 +21,8 @@ public class LevelHandler : MonoBehaviour
     {
         Inventory.Singleton.Opened += InventoryOpened;
         Inventory.Singleton.Closed += InventoryClosed;
+        UIHandler.Singleton.OnShow += PanelActivated;
+        UIHandler.Singleton.OnShow += PanelDeactivated;
 
         for (int i = 0; i < itemToAdd.Count;i++ )
             Inventory.Singleton.AddItem((itemToAdd[i] as GameObject).GetComponent<Item>());
@@ -29,10 +31,31 @@ public class LevelHandler : MonoBehaviour
     private void InventoryOpened()
     {
         fpsController.IsActive = false;
+        updateCursor();
     }
 
     private void InventoryClosed()
     {
         fpsController.IsActive = true;
+        updateCursor();
+    }
+
+    private void PanelActivated()
+    {
+        updateCursor();
+    }
+
+    private void PanelDeactivated()
+    {
+        updateCursor();
+    }
+
+    private void updateCursor()
+    {
+        Debug.Log("Inventory " + Inventory.Singleton.IsShown + ", Panel active " + UIHandler.Singleton.IsPanelActive());
+        if (Inventory.Singleton.IsShown || UIHandler.Singleton.IsPanelActive())
+            Cursor.visible = true;
+        else
+            Cursor.visible = false;
     }
 }
