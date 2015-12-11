@@ -80,7 +80,7 @@ namespace Enigma
         {
             GameObject newSprite = Instantiate(contentChild);
             newSprite.transform.SetParent(contentParent.transform, false);
-            newSprite.GetComponent<ItemId>().Id = item.Id;
+            newSprite.GetComponent<Item>().SetItem(item.Id, item.Icon, item.PopUpMessage, item.PopUpSprite);
             newSprite.GetComponent<Image>().sprite = item.Icon;
             itemContents.Add(newSprite);
 
@@ -95,7 +95,7 @@ namespace Enigma
         {
             foreach(GameObject existingSprite in itemContents)
             {
-                if(existingSprite.GetComponent<ItemId>().Id == item.Id)
+                if(existingSprite.GetComponent<Item>().Id == item.Id)
                 {
                     Destroy(existingSprite);
                     itemContents.Remove(existingSprite);

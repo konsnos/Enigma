@@ -34,5 +34,13 @@ namespace Enigma
         {
             get { return popUpSprite; }
         }
+
+        public void SetItem(int newId, Sprite newIcon, string newMessage, Sprite newPopUpSprite)
+        {
+            id = newId;
+            icon = newIcon;
+            popUpMessage = newMessage;
+            popUpSprite = newPopUpSprite;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityStandardAssets.Characters.FirstPerson;
 using Enigma;
+using Enigma.UserInterface;
 using System.Collections.Generic;
 
 public class LevelHandler : MonoBehaviour 
