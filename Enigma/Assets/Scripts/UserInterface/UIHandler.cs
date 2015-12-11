@@ -28,9 +28,40 @@ namespace Enigma.UserInterface
         [SerializeField]
         private Text popUpText;
 
+        /*********** DRAG *******/
+        private bool dragActive;
+        /// <summary>
+        /// item that is being dragged.
+        /// </summary>
+        private Item dragItem;
+        /// <summary>
+        /// Image of the dragged item.
+        /// </summary>
+        [SerializeField]
+        private Image dragImg;
+        /// <summary>
+        /// RectTransform of the dragged item.
+        /// </summary>
+        [SerializeField]
+        private RectTransform dragT;
+
         void Awake()
         {
             Singleton = this;
+            dragActive = false;
+        }
+
+        void Update()
+        {
+            if(dragActive)
+            {
+                dragT.position = Input.mousePosition;
+                if (Input.GetMouseButtonUp(0))
+                {
+                    //TODO: Check to interact item.
+                    ResetDrag();
+                }
+            }
         }
 
         public void ShowPopUp(string message, Sprite image)
@@ -63,6 +94,21 @@ namespace Enigma.UserInterface
         public bool IsPanelActive()
         {
             return PopUpPanel.activeSelf;
+        }
+
+        public void InitDrag(Item item)
+        {
+            dragItem = item;
+            dragT.gameObject.SetActive(true);
+            dragImg.sprite = dragItem.Icon;
+            dragT.position = Input.mousePosition;
+            dragActive = true;
+        }
+
+        public void ResetDrag()
+        {
+            dragActive = false;
+            dragT.gameObject.SetActive(false);
         }
     }
 }

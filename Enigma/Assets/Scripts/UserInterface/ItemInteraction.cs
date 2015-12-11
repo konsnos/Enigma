@@ -25,6 +25,7 @@ namespace Enigma.UserInterface
         {
             pointerDown = true;
             pointerExit = false;
+            Debug.Log("[ItemInteraction] On pointer down");
         }
 
         public void OnPointerUp()
@@ -32,6 +33,7 @@ namespace Enigma.UserInterface
             if(pointerDown && !pointerExit) // Show pop up
             {
                 UIHandler.Singleton.ShowPopUp(item.PopUpMessage, item.PopUpSprite);
+                Debug.Log("[ItemInteraction] On pointer up. Show pop up");
             }
             else // Check to drop item to interact
             {
@@ -43,8 +45,9 @@ namespace Enigma.UserInterface
         {
             if (pointerDown)
             {
+                pointerDown = false;
                 pointerExit = true;
-                //TODO: drag icon.
+                UIHandler.Singleton.InitDrag(item);
             }
         }
     }
