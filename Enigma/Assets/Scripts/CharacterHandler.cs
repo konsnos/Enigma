@@ -54,7 +54,7 @@ namespace Enigma
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
 
             LayerMask mask = 1 << Layers.Interaction;
-            hits = Physics.RaycastAll(ray, 2f, mask);
+            hits = Physics.RaycastAll(ray, 3f, mask);
             Debug.Log("[CharacterHandler] Hits " + hits.Length);
             return hits;
         }
@@ -143,6 +143,9 @@ namespace Enigma
                             case "LockedBox_Shelf2":
                                 if (!hit.transform.gameObject.GetComponent<DrawerHandler>().IsLocked)
                                     hit.transform.gameObject.GetComponent<DrawerHandler>().Interact();
+                                return;
+                            case "SM_SteelDoor":
+                                UIHandler.Singleton.ShowPopUp("I have to take the machine first... It’s important.", null);
                                 return;
                             default:
                                 break;

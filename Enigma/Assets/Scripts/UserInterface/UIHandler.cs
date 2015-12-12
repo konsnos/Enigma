@@ -47,6 +47,9 @@ namespace Enigma.UserInterface
 
         private bool popUpIsOpen;
 
+        private float popUpShowTS;
+        private float popUpCloseIgnoreDuration = 1f;
+
         public bool PopUpIsOpen
         {
             get { return popUpIsOpen; }
@@ -102,12 +105,17 @@ namespace Enigma.UserInterface
             popUpText.text = message;
             if (image != null)
             {
+                popUpImg.color = new Color(1f, 1f, 1f, 1f);
                 popUpImg.sprite = image;
                 popUpImg.SetNativeSize();
-                popUpImg.gameObject.SetActive(true);
             }
             else
-                popUpImg.gameObject.SetActive(false);
+            {
+                popUpImg.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(10, 10);
+                popUpImg.color = new Color(1f, 1f, 1f, 0f);
+            }
+
+            popUpShowTS = Time.time + popUpCloseIgnoreDuration;
 
             if (OnShow != null)
                 OnShow();
@@ -115,13 +123,16 @@ namespace Enigma.UserInterface
 
         public void HidePopUp()
         {
-            Debug.Log("[UIHandler] Hide pop up");
-            PopUpPanel.SetActive(false);
-            popUpIsOpen = false;
-            CharacterHandler.ActivateIgnoreMouseBtn();
+            if (Time.time > popUpShowTS)
+            {
+                Debug.Log("[UIHandler] Hide pop up");
+                PopUpPanel.SetActive(false);
+                popUpIsOpen = false;
+                CharacterHandler.ActivateIgnoreMouseBtn();
 
-            if (OnHide != null)
-                OnHide();
+                if (OnHide != null)
+                    OnHide();
+            }
         }
 
         /// <summary>

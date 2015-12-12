@@ -25,12 +25,15 @@ namespace Enigma.MiniGames
         /// </summary>
         [SerializeField]
         private GameObject UpDownGo;
-        private float[] upDownYs = new float[6] { -4.98f, -3.9f, -2.74f, -1.6f, -0.46f, 0.67f };
+        private float[] upDownYs = new float[6] { 1.76f, 2.8f, 4.05f, 5.18f, 6.34f, 7.51f };
+        private int[] cylinderLength = new int[6] { 13, 13, 13, 12, 13, 13 };
+        private int[] cylinderStartIndex = new int[6] { 0, 0, 0, 13, 0, 13 };
+        private float[] cylinderDegreesStep;
         /// <summary>
         /// Letter indexes array.
         /// </summary>
         private char[] letterIndexes = new char[26] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-        private float degreesStep = 360f / 26f;
+        //private float degreesStep = 360f / 26f;
         [SerializeField]
         private char[] solution = new char[6] {'J', 'I', 'G', 'S', 'A', 'W'};
         /// <summary>
@@ -74,6 +77,8 @@ namespace Enigma.MiniGames
                 cylindersIndex[i] = 0;
 
             indexCylinder = 0;
+
+            cylinderDegreesStep = new float[6] { 360f / cylinderLength[0], 360f / cylinderLength[1], 360f / cylinderLength[2], 360f / cylinderLength[3], 360f / cylinderLength[4], 360f / cylinderLength[5] };
         }
 
         void Update()
@@ -89,10 +94,10 @@ namespace Enigma.MiniGames
             if(Input.GetKeyUp(KeyCode.UpArrow))
             {
                 cylindersIndex[indexCylinder]++;
-                if (cylindersIndex[indexCylinder] >= letterIndexes.Length)
+                if (cylindersIndex[indexCylinder] >= cylinderLength[indexCylinder])
                     cylindersIndex[indexCylinder] = 0;
                 Vector3 localRotate = cylinders[indexCylinder].transform.localRotation.eulerAngles;
-                localRotate.y = cylindersIndex[indexCylinder] * degreesStep;
+                localRotate.y = cylindersIndex[indexCylinder] * cylinderDegreesStep[indexCylinder];
                 LeanTween.rotateLocal(cylinders[indexCylinder], localRotate, transitionDuration);
                 CancelInvoke("checkIfCorrect");
                 Invoke("checkIfCorrect", checkDelay);
@@ -101,9 +106,9 @@ namespace Enigma.MiniGames
             {
                 cylindersIndex[indexCylinder]--;
                 if (cylindersIndex[indexCylinder] < 0)
-                    cylindersIndex[indexCylinder] = letterIndexes.Length - 1;
+                    cylindersIndex[indexCylinder] = cylinderLength[indexCylinder] - 1;
                 Vector3 localRotate = cylinders[indexCylinder].transform.localRotation.eulerAngles;
-                localRotate.y = cylindersIndex[indexCylinder] * degreesStep;
+                localRotate.y = cylindersIndex[indexCylinder] * cylinderDegreesStep[indexCylinder];
                 LeanTween.rotateLocal(cylinders[indexCylinder], localRotate, transitionDuration);
                 CancelInvoke("checkIfCorrect");
                 Invoke("checkIfCorrect", checkDelay);
@@ -179,7 +184,7 @@ namespace Enigma.MiniGames
         {
             char[] charTry = new char[6];
             for(int i = 0;i<cylindersIndex.Length;i++)
-                charTry[i] = letterIndexes[cylindersIndex[i]];
+                charTry[i] = letterIndexes[cylinderStartIndex[i] + cylindersIndex[i]];
 
             return charTry;
         }
