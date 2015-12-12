@@ -400,8 +400,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134382}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: 1.1586, y: 0.4957, z: -0.337}
+  m_LocalRotation: {x: 0, y: 0, z: -0.58357245, w: 0.81206113}
+  m_LocalPosition: {x: 1.1467, y: 0.8981, z: -0.7394}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 463018}
@@ -806,7 +806,7 @@ MonoBehaviour:
   - {fileID: 124552}
   - {fileID: 144482}
   - {fileID: 118920}
-  UpDownGo: {fileID: 0}
+  UpDownGo: {fileID: 197778}
   solution: 4a0049004700530041005700
   transitionDuration: 0.3
   checkDelay: 0.5

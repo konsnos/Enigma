@@ -5,7 +5,7 @@ namespace Enigma
     public class Item : MonoBehaviour
     {
         [SerializeField]
-        private int id;
+        private ItemIds.Item id;
         [SerializeField]
         private Sprite icon;
         [SerializeField]
@@ -15,7 +15,7 @@ namespace Enigma
 
         private GameObject instancedObject;
 
-        public int Id
+        public ItemIds.Item Id
         {
             get { return id; }
         }
@@ -35,7 +35,7 @@ namespace Enigma
             get { return popUpSprite; }
         }
 
-        public void SetItem(int newId, Sprite newIcon, string newMessage, Sprite newPopUpSprite)
+        public void SetItem(ItemIds.Item newId, Sprite newIcon, string newMessage, Sprite newPopUpSprite)
         {
             id = newId;
             icon = newIcon;

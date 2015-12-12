@@ -101,7 +101,9 @@ namespace Enigma.MiniGames
                 cylindersIndex[indexCylinder]++;
                 if (cylindersIndex[indexCylinder] >= letterIndexes.Length)
                     cylindersIndex[indexCylinder] = 0;
-                LeanTween.rotateY(cylinders[indexCylinder], cylindersIndex[indexCylinder] * degreesStep, transitionDuration);
+                Vector3 localRotate = cylinders[indexCylinder].transform.localRotation.eulerAngles;
+                localRotate.y = cylindersIndex[indexCylinder] * degreesStep;
+                LeanTween.rotateLocal(cylinders[indexCylinder], localRotate, transitionDuration);
                 CancelInvoke("checkIfCorrect");
                 Invoke("checkIfCorrect", checkDelay);
             }
@@ -110,7 +112,9 @@ namespace Enigma.MiniGames
                 cylindersIndex[indexCylinder]--;
                 if (cylindersIndex[indexCylinder] < 0)
                     cylindersIndex[indexCylinder] = letterIndexes.Length - 1;
-                LeanTween.rotateY(cylinders[indexCylinder], cylindersIndex[indexCylinder] * degreesStep, transitionDuration);
+                Vector3 localRotate = cylinders[indexCylinder].transform.localRotation.eulerAngles;
+                localRotate.y = cylindersIndex[indexCylinder] * degreesStep;
+                LeanTween.rotateLocal(cylinders[indexCylinder], localRotate, transitionDuration);
                 CancelInvoke("checkIfCorrect");
                 Invoke("checkIfCorrect", checkDelay);
             }
