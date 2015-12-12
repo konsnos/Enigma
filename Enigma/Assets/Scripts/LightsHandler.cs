@@ -21,7 +21,12 @@ namespace Enigma
             foreach (Light light in normalLights)
                 light.gameObject.SetActive(false);
 
-            foreach(Light light in alarmLights)
+            Invoke("openAlarmLights", 2f);
+        }
+
+        private void openAlarmLights()
+        {
+            foreach (Light light in alarmLights)
             {
                 light.gameObject.SetActive(true);
                 light.intensity = 0f;

@@ -17,13 +17,35 @@ namespace Enigma
 
         private LockCypher lockCypher;
 
+        private static bool ignoreMousebtn;
+
+        void Awake()
+        {
+            ignoreMousebtn = false;
+        }
+
         void Update()
         {
-            if(!Inventory.Singleton.IsShown && !UIHandler.Singleton.IsPanelActive() && !LevelHandler.Singleton.IsLockCipherActive)
+            if (ignoreMousebtn)
+                ignoreMousebtn = false;
+            else
             {
-                if(Input.GetMouseButtonUp(0))
-                    raycastForInteraction();
+                if (!Inventory.Singleton.IsShown && !UIHandler.Singleton.PopUpIsOpen && !LevelHandler.Singleton.IsLockCipherActive)
+                {
+                    if (Input.GetMouseButtonUp(0))
+                        raycastForInteraction();
+                }
             }
+        }
+
+        public static void ActivateIgnoreMouseBtn()
+        {
+            ignoreMousebtn = true;
+        }
+
+        private void makeAlarm()
+        {
+            LevelHandler.Singleton.EnableAlarm();
         }
 
         public static RaycastHit[] GetHits(Vector3 screenPoint)
@@ -60,6 +82,7 @@ namespace Enigma
                                     break;
                                 case 1:
                                     UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.PopUpSprite);
+                                    Invoke("makeAlarm", Random.Range(3f, 5f));
                                     break;
                                 case 2:
                                     UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.PopUpSprite);

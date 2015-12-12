@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Enigma.Sound;
 
 namespace Enigma
 {
@@ -31,6 +32,7 @@ namespace Enigma
         public void Unlock()
         {
             isLocked = false;
+            UnlockDrawer.Singleton.PlaySound();
         }
 
         /// <summary>
@@ -51,6 +53,7 @@ namespace Enigma
                     LeanTween.moveLocal(this.gameObject, interactionPosition, interactionDuration);
                     Debug.Log("[DrawerHandler] Opening drawer.");
                 }
+                OpenCloseDrawer.Singleton.PlaySound();
 
                 isActive = !isActive;
             }

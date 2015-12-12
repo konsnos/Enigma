@@ -11,6 +11,11 @@ public class SoundsHandler : MonoBehaviour
     public void EnableAlarm()
     {
         bg.Stop();
+        Invoke("playAlarm", 2f);
+    }
+
+    private void playAlarm()
+    {
         alarm.Play();
     }
 }

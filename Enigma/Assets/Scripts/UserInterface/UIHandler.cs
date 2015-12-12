@@ -45,8 +45,16 @@ namespace Enigma.UserInterface
         [SerializeField]
         private RectTransform dragT;
 
+        private bool popUpIsOpen;
+
+        public bool PopUpIsOpen
+        {
+            get { return popUpIsOpen; }
+        }
+
         void Awake()
         {
+            popUpIsOpen = false;
             Singleton = this;
             dragActive = false;
         }
@@ -89,6 +97,7 @@ namespace Enigma.UserInterface
         public void ShowPopUp(string message, Sprite image)
         {
             PopUpPanel.SetActive(true);
+            popUpIsOpen = true;
 
             popUpText.text = message;
             if (image != null)
@@ -108,6 +117,8 @@ namespace Enigma.UserInterface
         {
             Debug.Log("[UIHandler] Hide pop up");
             PopUpPanel.SetActive(false);
+            popUpIsOpen = false;
+            CharacterHandler.ActivateIgnoreMouseBtn();
 
             if (OnHide != null)
                 OnHide();
