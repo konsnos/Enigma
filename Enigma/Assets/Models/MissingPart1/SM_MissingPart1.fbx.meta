@@ -1,27 +1,15 @@
 fileFormatVersion: 2
 guid: 320b38e3b670c5749b254c6ac8a44753
-timeCreated: 1449887590
+timeCreated: 1449921818
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: button2
-    100002: button3
-    100004: button4
-    100006: //RootNode
-    400000: button2
-    400002: button3
-    400004: button4
-    400006: //RootNode
-    2300000: button2
-    2300002: button3
-    2300004: button4
-    3300000: button2
-    3300002: button3
-    3300004: button4
-    4300000: button3
-    4300002: button2
-    4300004: button4
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: SM_MissingPart1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -81,7 +69,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -26,7 +26,7 @@ namespace Enigma.MiniGames
         /// </summary>
         [SerializeField]
         private GameObject UpDownGo;
-        private float[] upDownYs = new float[6] { -5.2f, -3.94f, -2.72f, -1.54f, -0.39f, 0.72f };
+        private float[] upDownYs = new float[6] { -4.98f, -3.9f, -2.74f, -1.6f, -0.46f, 0.67f };
         /// <summary>
         /// Letter indexes array.
         /// </summary>

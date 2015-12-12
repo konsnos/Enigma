@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a83545aca9f9dea4db9f3e3e177fb1b6
-timeCreated: 1449886973
+timeCreated: 1449921820
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -32,7 +32,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -69,7 +69,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
