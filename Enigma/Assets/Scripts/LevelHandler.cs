@@ -15,6 +15,11 @@ public class LevelHandler : MonoBehaviour
     /// </summary>
     public List<GameObject> itemToAdd;
 
+    [SerializeField]
+    private LightsHandler lightsHandler;
+    [SerializeField]
+    private SoundsHandler soundsHandler;
+
     private bool isLockCipherActive;
 
     public bool IsLockCipherActive
@@ -44,6 +49,15 @@ public class LevelHandler : MonoBehaviour
 
         for (int i = 0; i < itemToAdd.Count;i++ )
             Inventory.Singleton.AddItem((itemToAdd[i] as GameObject).GetComponent<Item>());
+    }
+
+    /// <summary>
+    /// Play lights and sounds.
+    /// </summary>
+    public void EnableAlarm()
+    {
+        lightsHandler.EnableAlarms();
+        soundsHandler.EnableAlarm();
     }
 
     private void InventoryOpened()
