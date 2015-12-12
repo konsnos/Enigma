@@ -133,14 +133,17 @@ namespace Enigma
 
         void Update()
         {
-            if (Input.GetKeyUp(KeyCode.I))
+            if (!LevelHandler.Singleton.IsLockCypherActive)
             {
-                isShown = !isShown;
+                if (Input.GetKeyUp(KeyCode.I))
+                {
+                    isShown = !isShown;
 
-                if (isShown)
-                    openInventory();
-                else
-                    closeInventory();
+                    if (isShown)
+                        openInventory();
+                    else
+                        closeInventory();
+                }
             }
         }
 

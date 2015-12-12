@@ -7,14 +7,20 @@ using System.Collections.Generic;
 
 public class LevelHandler : MonoBehaviour 
 {
+    public static LevelHandler Singleton;
+
     FirstPersonController fpsController;
     /// <summary>
     /// Used to dynamically add items to the inventory.
     /// </summary>
     public List<GameObject> itemToAdd;
 
+    public bool IsLockCypherActive;
+
 	void Awake ()
     {
+        Singleton = this;
+        IsLockCypherActive = false;
         fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 	}
 
@@ -55,6 +61,11 @@ public class LevelHandler : MonoBehaviour
         if (Inventory.Singleton.IsShown || UIHandler.Singleton.IsPanelActive())
         {
             Cursor.visible = true;
+            fpsController.IsActive = false;
+        }
+        else if(IsLockCypherActive)
+        {
+            Cursor.visible = false;
             fpsController.IsActive = false;
         }
         else
