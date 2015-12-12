@@ -77,14 +77,14 @@ namespace Enigma
                             int enigmaParts = Inventory.Singleton.GetAmountOfPartsOfEnigma();
                             switch (enigmaParts)
                             {
-                                case 0:
+                                case 1:
                                     UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.PopUpSprite);
                                     break;
-                                case 1:
+                                case 2:
                                     UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.PopUpSprite);
                                     Invoke("makeAlarm", Random.Range(3f, 5f));
                                     break;
-                                case 2:
+                                case 3:
                                     UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.PopUpSprite);
                                     break;
                                 default:
@@ -120,7 +120,11 @@ namespace Enigma
                         {
                             case "SM_EnigmaMachine":
                                 if (Inventory.Singleton.GetAmountOfPartsOfEnigma() == 3)
-                                    OnGameWon();
+                                {
+                                    Debug.Log("[CharacterController] Game won!!");
+                                    if(OnGameWon != null)
+                                        OnGameWon();
+                                } 
                                 else
                                     UIHandler.Singleton.ShowPopUp("Some parts are missing! I have to find them. Quickly!", null);
                                 return;

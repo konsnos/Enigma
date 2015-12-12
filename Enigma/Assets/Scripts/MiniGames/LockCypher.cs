@@ -11,6 +11,9 @@ namespace Enigma.MiniGames
         public char[] debugSolution;
 
         [SerializeField]
+        private DrawerHandler drawerUnlocked;
+
+        [SerializeField]
         private GameObject[] cylinders;
         /// <summary>
         /// Letter index of the cylinder.
@@ -164,6 +167,8 @@ namespace Enigma.MiniGames
 
             GetComponent<CapsuleCollider>().isTrigger = false;
             GetComponent<Rigidbody>().useGravity = true;
+
+            drawerUnlocked.Unlock();
 
             if (OnSolved != null)
                 OnSolved();

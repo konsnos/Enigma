@@ -65,6 +65,7 @@ namespace Enigma
 
         public void AddItem(Item newItem)
         {
+            Debug.Log("[Inventory] Adding item " + newItem.Id);
             items.Add(newItem.Id, newItem);
             addSprite(newItem);
 
@@ -171,7 +172,7 @@ namespace Enigma
             int amount = 0;
             foreach(DictionaryEntry entry in items)
             {
-                if ((entry.Value as Item).Id == ItemIds.Item.Enigma_Part1 || (entry.Value as Item).Id == ItemIds.Item.Enigma_Part2 || (entry.Value as Item).Id == ItemIds.Item.Enigma_Part1)
+                if ((entry.Value as Item).Id == ItemIds.Item.Enigma_Part1 || (entry.Value as Item).Id == ItemIds.Item.Enigma_Part2 || (entry.Value as Item).Id == ItemIds.Item.Enigma_Part3)
                     amount++;
             }
 
