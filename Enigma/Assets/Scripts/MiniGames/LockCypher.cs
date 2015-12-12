@@ -9,6 +9,8 @@ namespace Enigma.MiniGames
         public event Refresh OnSolved;
         public event Refresh OnExitted;
 
+        public char[] debugSolution;
+
         [SerializeField]
         private GameObject[] cylinders;
         /// <summary>
@@ -142,6 +144,7 @@ namespace Enigma.MiniGames
         private void checkIfCorrect()
         {
             char[] charsTry = getLetters();
+            debugSolution = charsTry;
             for(int i = 0;i<solution.Length;i++)
             {
                 if (solution[i] != charsTry[i])
