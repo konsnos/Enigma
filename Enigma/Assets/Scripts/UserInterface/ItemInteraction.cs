@@ -35,7 +35,7 @@ namespace Enigma.UserInterface
                 UIHandler.Singleton.ShowPopUp(item.PopUpMessage, item.PopUpSprite);
                 Debug.Log("[ItemInteraction] On pointer up. Show pop up");
             }
-            // drop to interact check is done from CharacterHandler.
+            // drop to interact check is done from UIhandler.
         }
 
         public void OnPointerExit()

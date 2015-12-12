@@ -58,7 +58,29 @@ namespace Enigma.UserInterface
                 dragT.position = Input.mousePosition;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    //TODO: Check to interact item.
+                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition);
+
+                    foreach(RaycastHit hit in hits)
+                    {
+                        Debug.Log("[UIHandler] hit object " + hit.transform.gameObject.name);
+                        switch(hit.transform.gameObject.name)
+                        {
+                            case "LockedDrawer":
+                                if(dragItem.Id == ItemIds.Item.Locked_Drawer_Key)
+                                {
+                                    if(Inventory.Singleton.UseItem(ItemIds.Item.Locked_Drawer_Key))
+                                    {
+                                        DrawerHandler drawerHandler = hit.transform.gameObject.GetComponent<DrawerHandler>();
+                                        drawerHandler.Unlock();
+                                        drawerHandler.Interact();
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
                     ResetDrag();
                 }
             }
@@ -73,7 +95,10 @@ namespace Enigma.UserInterface
             {
                 popUpImg.sprite = image;
                 popUpImg.SetNativeSize();
+                popUpImg.gameObject.SetActive(true);
             }
+            else
+                popUpImg.gameObject.SetActive(false);
 
             if (OnShow != null)
                 OnShow();
@@ -81,6 +106,7 @@ namespace Enigma.UserInterface
 
         public void HidePopUp()
         {
+            Debug.Log("[UIHandler] Hide pop up");
             PopUpPanel.SetActive(false);
 
             if (OnHide != null)

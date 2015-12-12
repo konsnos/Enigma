@@ -7,7 +7,8 @@ namespace Enigma
 {
     public class CharacterHandler : MonoBehaviour
     {
-        bool mouseAction;
+        public delegate void EnigmaEvent();
+        public event EnigmaEvent OnGameWon;
 
         [SerializeField]
         private float cameraTransitionDuration = 0.5f;
@@ -15,41 +16,61 @@ namespace Enigma
         private GameObject cameraPlaceholder;
 
         private LockCypher lockCypher;
-        
-        void Awake()
-        {
-            mouseAction = false;
-        }
 
         void Update()
         {
-            if(!LevelHandler.Singleton.IsLockCipherActive && Input.GetMouseButton(0) && !mouseAction)
+            if(!Inventory.Singleton.IsShown && !UIHandler.Singleton.IsPanelActive() && !LevelHandler.Singleton.IsLockCipherActive)
             {
-                raycastForInteraction();
-            }
-            else
-            {
-                if (mouseAction)
-                    mouseAction = false;
+                if(Input.GetMouseButtonUp(0))
+                    raycastForInteraction();
             }
         }
 
-        private void raycastForInteraction()
+        public static RaycastHit[] GetHits(Vector3 screenPoint)
         {
             RaycastHit[] hits;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
 
             LayerMask mask = 1 << Layers.Interaction;
             hits = Physics.RaycastAll(ray, 2f, mask);
+            Debug.Log("[CharacterHandler] Hits " + hits.Length);
+            return hits;
+        }
+
+        private void raycastForInteraction()
+        {
+            RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
             Item tempItem;
             foreach(RaycastHit hit in hits)
             {
+                Debug.Log("[CharacterHandler] hit object " + hit.transform.gameObject.name);
                 tempItem = hit.transform.GetComponent<Item>();
                 if(tempItem)
                 {
                     Inventory.Singleton.AddItem(tempItem);
-                    if(tempItem.PopUpMessage != "" || tempItem.PopUpSprite != null)
-                        UIHandler.Singleton.ShowPopUp(tempItem.PopUpMessage, tempItem.PopUpSprite);
+                    if (tempItem.PopUpMessage != "" || tempItem.PopUpSprite != null)
+                    {
+                        if (tempItem.Id == ItemIds.Item.Enigma_Part1 || tempItem.Id == ItemIds.Item.Enigma_Part2 || tempItem.Id == ItemIds.Item.Enigma_Part3)
+                        {
+                            int enigmaParts = Inventory.Singleton.GetAmountOfPartsOfEnigma();
+                            switch(enigmaParts)
+                            {
+                                case 0:
+                                    UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.PopUpSprite);
+                                    break;
+                                case 1:
+                                    UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.PopUpSprite);
+                                    break;
+                                case 2:
+                                    UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.PopUpSprite);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        else
+                            UIHandler.Singleton.ShowPopUp(tempItem.PopUpMessage, tempItem.PopUpSprite);
+                    }
                     Destroy(hit.transform.gameObject);
                     break;
                 }
@@ -67,6 +88,27 @@ namespace Enigma
                         lockCypher.OnSolved += lockCypherSolved;
                         lockCypher.OnExitted += lockCypherExitted;
                     }
+                    else
+                    {
+                        switch(hit.transform.gameObject.name)
+                        {
+                            case "SM_EnigmaMachine":
+                                if (Inventory.Singleton.GetAmountOfPartsOfEnigma() == 3)
+                                    OnGameWon();
+                                else
+                                    UIHandler.Singleton.ShowPopUp("Some parts are missing! I have to find them. Quickly!", null);
+                                break;
+                            case "LockedDrawer":
+                                if (hit.transform.gameObject.GetComponent<DrawerHandler>().IsLocked)
+                                    UIHandler.Singleton.ShowPopUp("It's locked...", null);
+                                else
+                                    hit.transform.gameObject.GetComponent<DrawerHandler>().Interact();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    
                 }
             }
         }

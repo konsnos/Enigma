@@ -25,6 +25,8 @@ namespace Enigma
         private int spaceBetweenItems = -8;
         [SerializeField]
         private int spriteHeight = -64;
+        [SerializeField]
+        private AudioSource takeItemSnd;
 
         /// <summary>
         /// Items owned by the character.
@@ -66,6 +68,8 @@ namespace Enigma
             items.Add(newItem.Id, newItem);
             addSprite(newItem);
 
+            takeItemSnd.Play();
+
             if (OnAdded != null)
                 OnAdded();
         }
@@ -106,6 +110,19 @@ namespace Enigma
             arrangeAddedItems();
         }
 
+        public bool UseItem(ItemIds.Item itemId)
+        {
+            if(items.ContainsKey(itemId))
+            {
+                Item tempItem = items[itemId] as Item;
+                RemoveItem(tempItem);
+                closeInventory();
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Sorts items one under another.
         /// </summary>
@@ -137,9 +154,7 @@ namespace Enigma
             {
                 if (Input.GetKeyUp(KeyCode.I))
                 {
-                    isShown = !isShown;
-
-                    if (isShown)
+                    if (!isShown)
                         openInventory();
                     else
                         closeInventory();
@@ -147,9 +162,27 @@ namespace Enigma
             }
         }
 
+        /// <summary>
+        /// Counts and returns enigma parts in the inventory.
+        /// </summary>
+        /// <returns></returns>
+        public int GetAmountOfPartsOfEnigma()
+        {
+            int amount = 0;
+            foreach(DictionaryEntry entry in items)
+            {
+                if ((entry.Value as Item).Id == ItemIds.Item.Enigma_Part1 || (entry.Value as Item).Id == ItemIds.Item.Enigma_Part2 || (entry.Value as Item).Id == ItemIds.Item.Enigma_Part1)
+                    amount++;
+            }
+
+            return amount;
+        }
+
         void openInventory()
         {
             LeanTween.moveX(this.gameObject.GetComponent<RectTransform>(), openX, transitionSpeed);
+
+            isShown = true;
 
             if (Opened != null)
                 Opened();
@@ -157,7 +190,10 @@ namespace Enigma
 
         void closeInventory()
         {
+            Debug.Log("[Inventory] Close inventory");
             LeanTween.moveX(this.gameObject.GetComponent<RectTransform>(), 0f, transitionSpeed);
+
+            isShown = false;
 
             if (Closed != null)
                 Closed();

@@ -50,6 +50,8 @@ public class LevelHandler : MonoBehaviour
         for (int i = 0; i < itemToAdd.Count;i++ )
             Inventory.Singleton.AddItem((itemToAdd[i] as GameObject).GetComponent<Item>());
 
+        updateCursor();
+
         //Invoke("EnableAlarm", 3f);
     }
 
@@ -74,6 +76,7 @@ public class LevelHandler : MonoBehaviour
 
     private void PanelActivated()
     {
+        Debug.Log("[LevelHandler] Panel activated.");
         updateCursor();
     }
 
