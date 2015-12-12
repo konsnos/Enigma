@@ -75,7 +75,7 @@ namespace Enigma
                         if (tempItem.Id == ItemIds.Item.Enigma_Part1 || tempItem.Id == ItemIds.Item.Enigma_Part2 || tempItem.Id == ItemIds.Item.Enigma_Part3)
                         {
                             int enigmaParts = Inventory.Singleton.GetAmountOfPartsOfEnigma();
-                            switch(enigmaParts)
+                            switch (enigmaParts)
                             {
                                 case 0:
                                     UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.PopUpSprite);
@@ -92,7 +92,9 @@ namespace Enigma
                             }
                         }
                         else
+                        {
                             UIHandler.Singleton.ShowPopUp(tempItem.PopUpMessage, tempItem.PopUpSprite);
+                        }
                     }
                     Destroy(hit.transform.gameObject);
                     break;
@@ -110,6 +112,7 @@ namespace Enigma
                         LeanTween.rotate(Camera.main.gameObject, lockCypher.CamPlaceHolder.transform.rotation.eulerAngles, cameraTransitionDuration);
                         lockCypher.OnSolved += lockCypherSolved;
                         lockCypher.OnExitted += lockCypherExitted;
+                        break;
                     }
                     else
                     {
@@ -120,13 +123,27 @@ namespace Enigma
                                     OnGameWon();
                                 else
                                     UIHandler.Singleton.ShowPopUp("Some parts are missing! I have to find them. Quickly!", null);
-                                break;
+                                return;
                             case "LockedDrawer":
                                 if (hit.transform.gameObject.GetComponent<DrawerHandler>().IsLocked)
                                     UIHandler.Singleton.ShowPopUp("It's locked...", null);
                                 else
                                     hit.transform.gameObject.GetComponent<DrawerHandler>().Interact();
-                                break;
+                                return;
+                            case "LeverHandle":
+                                hit.transform.gameObject.GetComponent<LeverHandler>().Use();
+                                Levers.Singleton.checkIfSolved();
+                                return;
+                            case "LockedBox_Shelf1":
+                                if (hit.transform.gameObject.GetComponent<DrawerHandler>().IsLocked)
+                                    UIHandler.Singleton.ShowPopUp("It has some kind of mechanical lock.", null);
+                                else
+                                    hit.transform.gameObject.GetComponent<DrawerHandler>().Interact();
+                                return;
+                            case "LockedBox_Shelf2":
+                                if (!hit.transform.gameObject.GetComponent<DrawerHandler>().IsLocked)
+                                    hit.transform.gameObject.GetComponent<DrawerHandler>().Interact();
+                                return;
                             default:
                                 break;
                         }

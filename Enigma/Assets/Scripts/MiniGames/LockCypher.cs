@@ -3,11 +3,10 @@ using System.Collections;
 
 namespace Enigma.MiniGames
 {
-    public class LockCypher : MonoBehaviour
+    public class LockCypher : MiniGameBase
     {
-        public delegate void Refresh();
-        public event Refresh OnSolved;
         public event Refresh OnExitted;
+        public event Refresh OnSolved;
 
         public char[] debugSolution;
 
@@ -60,15 +59,6 @@ namespace Enigma.MiniGames
         /// When true the mini game is active.
         /// </summary>
         public bool IsActive;
-        /// <summary>
-        /// When true this mini game is solved.
-        /// </summary>
-        private bool isSolved;
-
-        public bool IsSolved
-        {
-            get { return isSolved; }
-        }
 
         public GameObject CamPlaceHolder
         {

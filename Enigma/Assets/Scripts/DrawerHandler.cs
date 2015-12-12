@@ -9,8 +9,8 @@ namespace Enigma
         private Vector3 originalPosition;
         [SerializeField]
         private Vector3 interactionPosition;
-        [SerializeField]
-        private float interactionDuration;
+
+        private static float interactionDuration = 1f;
 
         [SerializeField]
         private bool isActive;
@@ -21,6 +21,11 @@ namespace Enigma
         public bool IsLocked
         {
             get { return isLocked; }
+        }
+
+        public bool IsActive
+        {
+            get { return isActive; }
         }
 
         void Awake()
@@ -38,7 +43,7 @@ namespace Enigma
         /// <summary>
         /// Interacts with the object if not locked.
         /// </summary>
-        public void Interact()
+        public virtual void Interact()
         {
             if (!isLocked)
             {
