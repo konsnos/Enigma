@@ -49,6 +49,8 @@ public class LevelHandler : MonoBehaviour
 
         for (int i = 0; i < itemToAdd.Count;i++ )
             Inventory.Singleton.AddItem((itemToAdd[i] as GameObject).GetComponent<Item>());
+
+        //Invoke("EnableAlarm", 3f);
     }
 
     /// <summary>
