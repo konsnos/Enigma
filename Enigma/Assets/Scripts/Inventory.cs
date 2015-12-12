@@ -133,7 +133,7 @@ namespace Enigma
 
         void Update()
         {
-            if (!LevelHandler.Singleton.IsLockCypherActive)
+            if (!LevelHandler.Singleton.IsLockCipherActive)
             {
                 if (Input.GetKeyUp(KeyCode.I))
                 {

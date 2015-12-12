@@ -15,12 +15,23 @@ public class LevelHandler : MonoBehaviour
     /// </summary>
     public List<GameObject> itemToAdd;
 
-    public bool IsLockCypherActive;
+    private bool isLockCipherActive;
+
+    public bool IsLockCipherActive
+    {
+        get { return isLockCipherActive; }
+    }
+
+    public void UpdateLockCipherActive(bool value)
+    {
+        isLockCipherActive = value;
+        updateCursor();
+    }
 
 	void Awake ()
     {
         Singleton = this;
-        IsLockCypherActive = false;
+        isLockCipherActive = false;
         fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 	}
 
@@ -63,7 +74,7 @@ public class LevelHandler : MonoBehaviour
             Cursor.visible = true;
             fpsController.IsActive = false;
         }
-        else if(IsLockCypherActive)
+        else if(isLockCipherActive)
         {
             Cursor.visible = false;
             fpsController.IsActive = false;

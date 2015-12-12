@@ -23,7 +23,7 @@ namespace Enigma
 
         void Update()
         {
-            if(!LevelHandler.Singleton.IsLockCypherActive && Input.GetMouseButton(0) && !mouseAction)
+            if(!LevelHandler.Singleton.IsLockCipherActive && Input.GetMouseButton(0) && !mouseAction)
             {
                 raycastForInteraction();
             }
@@ -60,7 +60,7 @@ namespace Enigma
                     if(lockCypher)
                     {
                         lockCypher.IsActive = true;
-                        LevelHandler.Singleton.IsLockCypherActive = true;
+                        LevelHandler.Singleton.UpdateLockCipherActive(true);
                         // disable character movement, disable cursor, disable inventory.
                         LeanTween.move(Camera.main.gameObject, lockCypher.CamPlaceHolder.transform.position, cameraTransitionDuration);
                         LeanTween.rotate(Camera.main.gameObject, lockCypher.CamPlaceHolder.transform.rotation.eulerAngles, cameraTransitionDuration);
@@ -74,7 +74,7 @@ namespace Enigma
         private void lockCypherSolved()
         {
             Debug.Log("[CharacterHandler] Lock cypher solved.");
-            LevelHandler.Singleton.IsLockCypherActive = false;
+            LevelHandler.Singleton.UpdateLockCipherActive(false);
             lockCypher.OnSolved -= lockCypherSolved;
             lockCypher.OnExitted -= lockCypherExitted;
             lockCypher.IsActive = false;
@@ -85,7 +85,7 @@ namespace Enigma
         private void lockCypherExitted()
         {
             Debug.Log("[CharacterHandler] Lock cypher exitted.");
-            LevelHandler.Singleton.IsLockCypherActive = false;
+            LevelHandler.Singleton.UpdateLockCipherActive(false);
             lockCypher.OnSolved -= lockCypherSolved;
             lockCypher.OnExitted -= lockCypherExitted;
             lockCypher.IsActive = false;

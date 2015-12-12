@@ -231,6 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a5add773b319d48bc011a9fad07de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraTransitionDuration: 0.5
+  cameraPlaceholder: {fileID: 186270}
 --- !u!114 &11435488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,8 +255,8 @@ MonoBehaviour:
     XSensitivity: 3
     YSensitivity: 3
     clampVerticalRotation: 1
-    MinimumX: -30
-    MaximumX: 30
+    MinimumX: -40
+    MaximumX: 40
     smooth: 0
     smoothTime: 5
     lockCursor: 0

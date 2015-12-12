@@ -160,6 +160,7 @@ namespace Enigma.MiniGames
             localPos.y += 1.8f;
             metal.transform.localPosition = localPos;
 
+            GetComponent<CapsuleCollider>().isTrigger = false;
             GetComponent<Rigidbody>().useGravity = true;
 
             if (OnSolved != null)
