@@ -1,27 +1,15 @@
 fileFormatVersion: 2
-guid: 740ebb6feea27f948a92918e5fae28d5
-timeCreated: 1449929029
+guid: 486196666bdf55748b286c4e49399a20
+timeCreated: 1449929294
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: body
-    100002: Self1
-    100004: Self2
-    100006: //RootNode
-    400000: body
-    400002: Self1
-    400004: Self2
-    400006: //RootNode
-    2300000: body
-    2300002: Self1
-    2300004: Self2
-    3300000: body
-    3300002: Self1
-    3300004: Self2
-    4300000: body
-    4300002: Self1
-    4300004: Self2
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: SM_Stool
     9500000: //RootNode
   materials:
     importMaterials: 1
