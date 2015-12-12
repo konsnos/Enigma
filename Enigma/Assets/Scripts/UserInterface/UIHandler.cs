@@ -48,7 +48,7 @@ namespace Enigma.UserInterface
         private bool popUpIsOpen;
 
         private float popUpShowTS;
-        private float popUpCloseIgnoreDuration = 1f;
+        private float popUpCloseIgnoreDuration = 0.6f;
 
         public bool PopUpIsOpen
         {

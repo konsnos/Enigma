@@ -8,6 +8,9 @@ namespace Enigma.MiniGames
         public event Refresh OnExitted;
         public event Refresh OnSolved;
 
+        [SerializeField]
+        private GameObject helpTxt;
+
         public char[] debugSolution;
 
         [SerializeField]
@@ -64,7 +67,17 @@ namespace Enigma.MiniGames
         /// <summary>
         /// When true the mini game is active.
         /// </summary>
-        public bool IsActive;
+        private bool isActive;
+
+        public bool IsActive
+        {
+            get { return isActive; }
+            set
+            {
+                isActive = value;
+                helpTxt.SetActive(isActive);
+            }
+        }
 
         public GameObject CamPlaceHolder
         {
@@ -74,6 +87,7 @@ namespace Enigma.MiniGames
         void Awake()
         {
             IsActive = false;
+            helpTxt.SetActive(false);
 
             cylindersIndex = new int[6];
             for (int i = 0; i < cylindersIndex.Length; i++)
