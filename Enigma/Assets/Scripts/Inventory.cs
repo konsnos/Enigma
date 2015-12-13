@@ -111,6 +111,16 @@ namespace Enigma
             arrangeAddedItems();
         }
 
+        /// <summary>
+        /// Checks if an item exists.
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns>True if the item exists.</returns>
+        public bool ItemExists(ItemIds.Item itemId)
+        {
+            return items.ContainsKey(itemId);
+        }
+
         public bool UseItem(ItemIds.Item itemId)
         {
             if(items.ContainsKey(itemId))

@@ -16,12 +16,16 @@ namespace Enigma
         private GameObject cameraPlaceholder;
 
         private LockCypher lockCypher;
+        [SerializeField]
+        private Light flashlight;
+        private bool flashlightOn;
 
         private static bool ignoreMousebtn;
 
         void Awake()
         {
             ignoreMousebtn = false;
+            flashlightOn = false;
         }
 
         void Update()
@@ -34,6 +38,14 @@ namespace Enigma
                 {
                     if (Input.GetMouseButtonUp(0))
                         raycastForInteraction();
+                    else if(Input.GetKeyUp(KeyCode.F))
+                    {
+                        if(Inventory.Singleton.ItemExists(ItemIds.Item.Flashlight))
+                        {
+                            flashlightOn = !flashlightOn;
+                            flashlight.enabled = flashlightOn;
+                        }
+                    }
                 }
             }
         }
