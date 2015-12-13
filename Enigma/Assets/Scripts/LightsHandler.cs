@@ -37,7 +37,7 @@ namespace Enigma
                 }
             }
 
-            //Invoke("openAlarmLights", 2f);
+            Invoke("openAlarmLights", 2f);
         }
 
         private void openAlarmLights()

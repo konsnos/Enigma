@@ -43,7 +43,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private AudioSource m_AudioSource;
 
         /** If true the update and fixedupdate will run. */
-        public bool IsActive;
+        private bool isActive;
+        public bool IsActive
+        {
+            get { return isActive; }
+            set 
+            { 
+                isActive = value;
+                Debug.Log("[FirstPersonController] Is active " + isActive);
+            }
+        }
 
         // Use this for initialization
         private void Start()
@@ -64,7 +73,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Update is called once per frame
         private void Update()
         {
-            if(IsActive)
+            if(isActive)
             {
                 RotateView();
                 // the jump state needs to read here to make sure it is not missed
@@ -100,7 +109,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void FixedUpdate()
         {
-            if (IsActive)
+            if (isActive)
             {
                 float speed;
                 GetInput(out speed);

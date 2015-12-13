@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityStandardAssets.Characters.FirstPerson;
-using Enigma;
+﻿using Enigma;
 using Enigma.UserInterface;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class LevelHandler : MonoBehaviour 
 {
@@ -26,6 +26,28 @@ public class LevelHandler : MonoBehaviour
     private bool isMiniGameActive;
     public bool cypherActive;
     public bool hiddenObjectGameActive;
+    private bool moviePlaying;
+    public bool MoviePlaying
+    {
+        get { return moviePlaying; }
+    }
+    [SerializeField]
+    private bool enableAlarm = false;
+    [SerializeField]
+    private bool enableEnd = false;
+
+    [SerializeField]
+    private RawImage movImage;
+    [SerializeField]
+    private AudioSource movAudioSrc;
+    [SerializeField]
+    private MovieTexture introMov;
+    [SerializeField]
+    private AudioClip introAudioClip;
+    [SerializeField]
+    private MovieTexture outroMov;
+    [SerializeField]
+    private AudioClip outroAudioClip;
 
     public bool IsMiniGameActive
     {
@@ -51,20 +73,70 @@ public class LevelHandler : MonoBehaviour
         Inventory.Singleton.Closed += InventoryClosed;
         UIHandler.Singleton.OnShow += PanelActivated;
         UIHandler.Singleton.OnHide += PanelDeactivated;
+        CharacterHandler.Singleton.OnGameWon += playOutroVideo;
 
         for (int i = 0; i < itemToAdd.Count;i++ )
             Inventory.Singleton.AddItem((itemToAdd[i] as GameObject).GetComponent<Item>());
 
+        if(enableAlarm)
+            Invoke("EnableAlarm", 3f);
+        if(enableEnd)
+            Invoke("playOutroVideo", 8f);
+
+        /*movImage.material.mainTexture = introMov;
+        movAudioSrc.clip = introAudioClip;
+        introMov.Play();
+        movAudioSrc.Play();
+        moviePlaying = true;
+        Invoke("fadeOutMov", introAudioClip.length);*/
+        movOnFadedOut();
+
         updateCursor();
         fpsController.IsActive = false;
         helpTxt.SetActive(true);
+    }
 
-        //Invoke("EnableAlarm", 3f);
+    private void playOutroVideo()
+    {
+        Debug.Log("[LevelHandler] playing outro video.");
+
+        soundsHandler.FadeOutAlarm();
+
+        fadeInMov();
+        movImage.material.mainTexture = outroMov;
+        movAudioSrc.clip = outroAudioClip;
+        outroMov.Play();
+        movAudioSrc.Play();
+        moviePlaying = true;
+        updateCursor();
+    }
+
+    void fadeInMov()
+    {
+        movImage.gameObject.SetActive(true);
+        LeanTween.value(movImage.gameObject, 0f, 1f, 0.5f).setOnUpdate(movOnUpdateFade);
+    }
+
+    void fadeOutMov()
+    {
+        LeanTween.value(movImage.gameObject, 1f, 0f, 0.5f).setOnUpdate(movOnUpdateFade).setOnComplete(movOnFadedOut);
+    }
+
+    void movOnUpdateFade(float value)
+    {
+        movImage.color = new Color(1f, 1f, 1f, value);
+    }
+
+    void movOnFadedOut()
+    {
+        movImage.gameObject.SetActive(false);
+        moviePlaying = false;
+        updateCursor();
     }
 
     void Update()
     {
-        if (helpTxt.activeSelf && Input.anyKeyDown)
+        if (!moviePlaying && helpTxt.activeSelf && Input.anyKeyDown)
         {
             helpTxt.SetActive(false);
             fpsController.IsActive = true;
@@ -103,8 +175,14 @@ public class LevelHandler : MonoBehaviour
 
     private void updateCursor()
     {
-        Debug.Log("Inventory " + Inventory.Singleton.IsShown + ", Panel active " + UIHandler.Singleton.IsPanelActive());
-        if (Inventory.Singleton.IsShown || UIHandler.Singleton.IsPanelActive())
+        Debug.Log("Movie playing " + moviePlaying + ", Inventory " + Inventory.Singleton.IsShown + ", Panel active " + UIHandler.Singleton.IsPanelActive() + ", in mini game "  + isMiniGameActive);
+        if(moviePlaying)
+        {
+            Cursor.visible = false;
+            fpsController.IsActive = false;
+            UIHandler.Singleton.SetCrosshairActive(false);
+        }
+        else if (Inventory.Singleton.IsShown || UIHandler.Singleton.IsPanelActive())
         {
             Cursor.visible = true;
             fpsController.IsActive = false;

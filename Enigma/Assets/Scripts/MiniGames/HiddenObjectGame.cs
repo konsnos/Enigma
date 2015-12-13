@@ -79,81 +79,84 @@ namespace Enigma.MiniGames
 
         void Update()
         {
-            if(gameStarted)
+            if (isActive)
             {
-                calculateTime();
-
-                // check hits
-                if(Input.GetMouseButtonUp(0))
+                if (gameStarted)
                 {
-                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.HiddenObjectIntereaction, 10f);
-                    HiddenObjectItemSlot itemSlot;
-                    foreach(RaycastHit hit in hits)
+                    calculateTime();
+
+                    // check hits
+                    if (Input.GetMouseButtonUp(0))
                     {
-                        Debug.Log("[HiddenObjectGame] Hit " + hit.transform.gameObject.name);
-                        itemSlot = hit.transform.gameObject.GetComponent<HiddenObjectItemSlot>();
-                        Debug.Log("[HiddenObjectGame] Hit id " + itemSlot.Id);
-                        if(itemSlot)
+                        RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.HiddenObjectIntereaction, 10f);
+                        HiddenObjectItemSlot itemSlot;
+                        foreach (RaycastHit hit in hits)
                         {
-                            bool found = false;
-                            for (int i = 0; i < checklist.Length;i++)
+                            Debug.Log("[HiddenObjectGame] Hit " + hit.transform.gameObject.name);
+                            itemSlot = hit.transform.gameObject.GetComponent<HiddenObjectItemSlot>();
+                            Debug.Log("[HiddenObjectGame] Hit id " + itemSlot.Id);
+                            if (itemSlot)
                             {
-                                if(checklist[i].id == itemSlot.Id)
+                                bool found = false;
+                                for (int i = 0; i < checklist.Length; i++)
                                 {
-                                    Debug.Log("[HiddenObjectGame] Checklist found " + checklist[i].id);
-                                    checklist[i].ItemFound();
-                                    itemSlot.Remove();
-                                    Click.Singleton.PlaySound();
-                                    found = true;
-                                    break;
+                                    if (checklist[i].id == itemSlot.Id)
+                                    {
+                                        Debug.Log("[HiddenObjectGame] Checklist found " + checklist[i].id);
+                                        checklist[i].ItemFound();
+                                        itemSlot.Remove();
+                                        Click.Singleton.PlaySound();
+                                        found = true;
+                                        break;
+                                    }
                                 }
-                            }
-                            if (found)
-                            {
-                                if(checkIfSolved())
+                                if (found)
                                 {
-                                    gameEnded();
-                                    isSolved = true;
-                                    if (OnSolved != null)
-                                        OnSolved();
+                                    if (checkIfSolved())
+                                    {
+                                        gameEnded();
+                                        isSolved = true;
+                                        if (OnSolved != null)
+                                            OnSolved();
+                                    }
                                 }
+                                else
+                                {
+                                    startTS -= wrongPickPenalty;
+                                    timer.color = Color.red;
+                                    CancelInvoke("returnTimerToWhite");
+                                    Invoke("returnTimerToWhite", 0.5f);
+                                    ClickWrong.Singleton.PlaySound();
+                                }
+                                break;
                             }
-                            else
-                            {
-                                startTS -= wrongPickPenalty;
-                                timer.color = Color.red;
-                                CancelInvoke("returnTimerToWhite");
-                                Invoke("returnTimerToWhite", 0.5f);
-                                ClickWrong.Singleton.PlaySound();
-                            }
-                            break;
+                        }
+                    }
+
+                    if ((Time.time - startTS) >= gameDuration)
+                    {
+                        gameEnded();
+                    }
+                }
+                else
+                {
+                    if (Input.GetMouseButtonUp(0))
+                    {
+                        RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.Interaction, 10f);
+                        foreach (RaycastHit hit in hits)
+                        {
+                            if (hit.transform.gameObject.name == "SM_Rope")
+                                startGame();
                         }
                     }
                 }
 
-                if ((Time.time - startTS) >= gameDuration)
+                if (Input.GetKeyUp(KeyCode.Escape))
                 {
                     gameEnded();
+                    if (OnExitted != null)
+                        OnExitted();
                 }
-            }
-            else
-            {
-                if(Input.GetMouseButtonUp(0))
-                {
-                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.Interaction, 10f);
-                    foreach(RaycastHit hit in hits)
-                    {
-                        if (hit.transform.gameObject.name == "SM_Rope")
-                            startGame();
-                    }
-                }
-            }
-
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                gameEnded();
-                if (OnExitted != null)
-                    OnExitted();
             }
         }
 

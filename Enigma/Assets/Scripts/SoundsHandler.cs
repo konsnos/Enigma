@@ -18,4 +18,19 @@ public class SoundsHandler : MonoBehaviour
     {
         alarm.Play();
     }
+
+    public void FadeOutAlarm()
+    {
+        LeanTween.value(this.gameObject, 1f, 0f, 1f).setOnUpdate(updateVolume).setOnComplete(stopSound);
+    }
+
+    private void stopSound()
+    {
+        alarm.Stop();
+    }
+
+    private void updateVolume(float value)
+    {
+        alarm.volume = value;
+    }
 }

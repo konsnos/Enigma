@@ -8,6 +8,8 @@ namespace Enigma
 {
     public class CharacterHandler : MonoBehaviour
     {
+        public static CharacterHandler Singleton;
+
         public delegate void EnigmaEvent();
         public event EnigmaEvent OnGameWon;
 
@@ -31,6 +33,8 @@ namespace Enigma
 
         void Awake()
         {
+            Singleton = this;
+
             ignoreMousebtn = false;
             flashlightOn = false;
 
@@ -44,7 +48,7 @@ namespace Enigma
                 ignoreMousebtn = false;
             else
             {
-                if (!Inventory.Singleton.IsShown && !UIHandler.Singleton.PopUpIsOpen && !LevelHandler.Singleton.IsMiniGameActive)
+                if (!LevelHandler.Singleton.MoviePlaying && !Inventory.Singleton.IsShown && !UIHandler.Singleton.PopUpIsOpen && !LevelHandler.Singleton.IsMiniGameActive)
                 {
                     if (Input.GetMouseButtonUp(0))
                     {
