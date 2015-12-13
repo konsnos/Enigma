@@ -70,12 +70,12 @@ namespace Enigma
             LevelHandler.Singleton.EnableAlarm();
         }
 
-        public static RaycastHit[] GetHits(Vector3 screenPoint, LayerMask mask)
+        public static RaycastHit[] GetHits(Vector3 screenPoint, LayerMask mask, float range)
         {
             RaycastHit[] hits;
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
+            Ray ray = Camera.main.ScreenPointToRay(screenPoint);
 
-            hits = Physics.RaycastAll(ray, 3f, mask);
+            hits = Physics.RaycastAll(ray, range, mask);
             Debug.Log("[CharacterHandler] Hits " + hits.Length);
             return hits;
         }
@@ -102,7 +102,7 @@ namespace Enigma
 
         private void raycastForInteraction()
         {
-            RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f), 1 << Layers.Interaction);
+            RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f), 1 << Layers.Interaction, 3f);
             Item tempItem;
             foreach(RaycastHit hit in hits)
             {
@@ -196,14 +196,17 @@ namespace Enigma
 
             if (hiddenObjectGame)
             {
-                hiddenObjectGame.IsActive = true;
-                LevelHandler.Singleton.UpdateMiniGameActive(true);
-                LevelHandler.Singleton.hiddenObjectGameActive = true;
-                // disable character movement, disable cursor, disable inventory.
-                LeanTween.move(Camera.main.gameObject, hiddenObjectGame.GetCamPosition(), cameraTransitionDuration);
-                LeanTween.rotate(Camera.main.gameObject, hiddenObjectGame.GetCamRotation().eulerAngles, cameraTransitionDuration);
-                hiddenObjectGame.OnSolved += hiddenObjectGameSolved;
-                hiddenObjectGame.OnExitted += hiddenObjectGameExitted;
+                if (!hiddenObjectGame.IsSolved)
+                {
+                    hiddenObjectGame.IsActive = true;
+                    LevelHandler.Singleton.UpdateMiniGameActive(true);
+                    LevelHandler.Singleton.hiddenObjectGameActive = true;
+                    // disable character movement, disable cursor, disable inventory.
+                    LeanTween.move(Camera.main.gameObject, hiddenObjectGame.GetCamPosition(), cameraTransitionDuration);
+                    LeanTween.rotate(Camera.main.gameObject, hiddenObjectGame.GetCamRotation().eulerAngles, cameraTransitionDuration);
+                    hiddenObjectGame.OnSolved += hiddenObjectGameSolved;
+                    hiddenObjectGame.OnExitted += hiddenObjectGameExitted;
+                }
             }
         }
 

@@ -85,11 +85,13 @@ namespace Enigma.MiniGames
                 // check hits
                 if(Input.GetMouseButtonUp(0))
                 {
-                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.HiddenObjectIntereaction);
+                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.HiddenObjectIntereaction, 10f);
                     HiddenObjectItemSlot itemSlot;
                     foreach(RaycastHit hit in hits)
                     {
+                        Debug.Log("[HiddenObjectGame] Hit " + hit.transform.gameObject.name);
                         itemSlot = hit.transform.gameObject.GetComponent<HiddenObjectItemSlot>();
+                        Debug.Log("[HiddenObjectGame] Hit id " + itemSlot.Id);
                         if(itemSlot)
                         {
                             bool found = false;
@@ -97,6 +99,7 @@ namespace Enigma.MiniGames
                             {
                                 if(checklist[i].id == itemSlot.Id)
                                 {
+                                    Debug.Log("[HiddenObjectGame] Checklist found " + checklist[i].id);
                                     checklist[i].ItemFound();
                                     itemSlot.Remove();
                                     found = true;
@@ -108,9 +111,9 @@ namespace Enigma.MiniGames
                                 if(checkIfSolved())
                                 {
                                     gameEnded();
+                                    isSolved = true;
                                     if (OnSolved != null)
                                         OnSolved();
-                                    return;
                                 }
                             }
                             else
@@ -126,7 +129,7 @@ namespace Enigma.MiniGames
                     }
                 }
 
-                if (gameDuration - (Time.time - startTS) >= gameDuration)
+                if ((Time.time - startTS) >= gameDuration)
                 {
                     gameEnded();
                 }
@@ -135,7 +138,7 @@ namespace Enigma.MiniGames
             {
                 if(Input.GetMouseButtonUp(0))
                 {
-                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.Interaction);
+                    RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.Interaction, 10f);
                     foreach(RaycastHit hit in hits)
                     {
                         if (hit.transform.gameObject.name == "SM_Rope")

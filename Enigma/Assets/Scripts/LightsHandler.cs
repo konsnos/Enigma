@@ -18,6 +18,8 @@ namespace Enigma
         [SerializeField]
         private float alarmDuration = 1f;
 
+        /// before build enable emmission.
+
         public void EnableAlarms()
         {
             foreach (Light light in normalLights)
@@ -28,14 +30,14 @@ namespace Enigma
                 Renderer rend = goLight.GetComponent<Renderer>();
                 if(rend)
                 {
-                    foreach(Material mat in rend.sharedMaterials)
+                    foreach(Material mat in rend.materials)
                     {
                         mat.SetColor("_EmissionColor", Color.black);
                     }
                 }
             }
 
-            Invoke("openAlarmLights", 2f);
+            //Invoke("openAlarmLights", 2f);
         }
 
         private void openAlarmLights()

@@ -108,6 +108,7 @@ public class LevelHandler : MonoBehaviour
         {
             Cursor.visible = true;
             fpsController.IsActive = false;
+            UIHandler.Singleton.SetCrosshairActive(false);
         }
         else if(isMiniGameActive)
         {
@@ -116,11 +117,13 @@ public class LevelHandler : MonoBehaviour
             else
                 Cursor.visible = true;
             fpsController.IsActive = false;
+            UIHandler.Singleton.SetCrosshairActive(false);
         }
         else
         {
             Cursor.visible = false;
             fpsController.IsActive = true;
+            UIHandler.Singleton.SetCrosshairActive(true);
         }
     }
 }
