@@ -21,18 +21,19 @@ namespace Enigma.MiniGames
 
         void Awake()
         {
-            col = itemGo.GetComponent<Collider>();
+            col = GetComponent<Collider>();
         }
 
         public void ResetSlot()
         {
             itemGo.SetActive(true);
+            col.enabled = true;
         }
 
         public void Remove()
         {
             itemGo.SetActive(false);
-            // play found sound.
+            col.enabled = false;
         }
     }
 }

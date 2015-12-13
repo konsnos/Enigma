@@ -122,15 +122,14 @@ namespace Enigma.MiniGames
                                 }
                                 else
                                 {
-                                    startTS -= wrongPickPenalty;
-                                    timer.color = Color.red;
-                                    CancelInvoke("returnTimerToWhite");
-                                    Invoke("returnTimerToWhite", 0.5f);
-                                    ClickWrong.Singleton.PlaySound();
+                                    dispatchPenalty();
                                 }
                                 break;
                             }
                         }
+
+                        if(hits.Length == 0)
+                            dispatchPenalty();
                     }
 
                     if ((Time.time - startTS) >= gameDuration)
@@ -160,6 +159,15 @@ namespace Enigma.MiniGames
             }
         }
 
+        private void dispatchPenalty()
+        {
+            startTS -= wrongPickPenalty;
+            timer.color = Color.red;
+            CancelInvoke("returnTimerToWhite");
+            Invoke("returnTimerToWhite", 0.5f);
+            ClickWrong.Singleton.PlaySound();
+        }
+
         /// <summary>
         /// Checks if mini game is solved.
         /// </summary>
@@ -179,6 +187,9 @@ namespace Enigma.MiniGames
             gameStarted = false;
             timer.text = "00:00";
             light.enabled = false;
+
+            foreach (HiddenObjectItemSlot slot in hiddenObject)
+                slot.ResetSlot();
         }
 
         private void delayedStart()

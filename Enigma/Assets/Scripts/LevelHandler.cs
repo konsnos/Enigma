@@ -35,6 +35,8 @@ public class LevelHandler : MonoBehaviour
     private bool enableAlarm = false;
     [SerializeField]
     private bool enableEnd = false;
+    [SerializeField]
+    private bool skipIntro = false;
 
     [SerializeField]
     private RawImage movImage;
@@ -83,13 +85,17 @@ public class LevelHandler : MonoBehaviour
         if(enableEnd)
             Invoke("playOutroVideo", 8f);
 
-        /*movImage.material.mainTexture = introMov;
-        movAudioSrc.clip = introAudioClip;
-        introMov.Play();
-        movAudioSrc.Play();
-        moviePlaying = true;
-        Invoke("fadeOutMov", introAudioClip.length);*/
-        movOnFadedOut();
+        if(skipIntro)
+            movOnFadedOut();
+        else
+        {
+            movImage.texture = introMov;
+            movAudioSrc.clip = introAudioClip;
+            introMov.Play();
+            movAudioSrc.Play();
+            moviePlaying = true;
+            Invoke("fadeOutMov", introAudioClip.length);
+        }
 
         updateCursor();
         fpsController.IsActive = false;
@@ -103,7 +109,7 @@ public class LevelHandler : MonoBehaviour
         soundsHandler.FadeOutAlarm();
 
         fadeInMov();
-        movImage.material.mainTexture = outroMov;
+        movImage.texture = outroMov;
         movAudioSrc.clip = outroAudioClip;
         outroMov.Play();
         movAudioSrc.Play();

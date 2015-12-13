@@ -8152,8 +8152,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.7, y: 31.333336, z: 96.3}
-  m_Center: {x: -32.06, y: 0.0000076293945, z: 3}
+  m_Size: {x: 5.7, y: 31.333336, z: 88.02}
+  m_Center: {x: -32.06, y: 0.0000076293945, z: 6.8}
 --- !u!114 &1481141200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8346,8 +8346,9 @@ MonoBehaviour:
   helpTxt: {fileID: 824686916}
   cypherActive: 0
   hiddenObjectGameActive: 0
-  enableAlarm: 1
-  enableEnd: 1
+  enableAlarm: 0
+  enableEnd: 0
+  skipIntro: 0
   movImage: {fileID: 1187585168}
   movAudioSrc: {fileID: 1187585170}
   introMov: {fileID: 15200000, guid: 3703d9adf039f8f459362db6d3fab8e8, type: 3}
@@ -9489,7 +9490,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 32, y: 64}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1745298332
