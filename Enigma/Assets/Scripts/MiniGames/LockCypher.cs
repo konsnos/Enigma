@@ -79,9 +79,14 @@ namespace Enigma.MiniGames
             }
         }
 
-        public GameObject CamPlaceHolder
+        public Vector3 GetCamPosition()
         {
-            get { return camPlaceHolder; }
+            return camPlaceHolder.transform.position;
+        }
+
+        public Quaternion GetCamRotation()
+        {
+            return camPlaceHolder.transform.rotation;
         }
 
         void Awake()

@@ -23,23 +23,25 @@ public class LevelHandler : MonoBehaviour
     [SerializeField]
     private GameObject helpTxt;
 
-    private bool isLockCipherActive;
+    private bool isMiniGameActive;
+    public bool cypherActive;
+    public bool hiddenObjectGameActive;
 
-    public bool IsLockCipherActive
+    public bool IsMiniGameActive
     {
-        get { return isLockCipherActive; }
+        get { return isMiniGameActive; }
     }
 
-    public void UpdateLockCipherActive(bool value)
+    public void UpdateMiniGameActive(bool value)
     {
-        isLockCipherActive = value;
+        isMiniGameActive = value;
         updateCursor();
     }
 
 	void Awake ()
     {
         Singleton = this;
-        isLockCipherActive = false;
+        isMiniGameActive = false;
         fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
 	}
 
@@ -107,9 +109,12 @@ public class LevelHandler : MonoBehaviour
             Cursor.visible = true;
             fpsController.IsActive = false;
         }
-        else if(isLockCipherActive)
+        else if(isMiniGameActive)
         {
-            Cursor.visible = false;
+            if (cypherActive)
+                Cursor.visible = false;
+            else
+                Cursor.visible = true;
             fpsController.IsActive = false;
         }
         else

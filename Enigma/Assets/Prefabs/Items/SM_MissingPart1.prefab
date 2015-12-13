@@ -90,7 +90,6 @@ MonoBehaviour:
   id: 1
   icon: {fileID: 21300000, guid: b425922d9f9fd0b48abcae0cfd37dc73, type: 3}
   popUpMessage: 
-  popUpSprite: {fileID: 21300000, guid: b425922d9f9fd0b48abcae0cfd37dc73, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

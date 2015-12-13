@@ -16,8 +16,12 @@ namespace Enigma
         private GameObject cameraPlaceholder;
 
         private LockCypher lockCypher;
+        private HiddenObjectGame hiddenObjectGame;
         [SerializeField]
-        private Light flashlight;
+        private GameObject flashlightGo;
+        private Light flashlightLight;
+        private AudioSource flashlightSnd;
+
         private bool flashlightOn;
 
         private static bool ignoreMousebtn;
@@ -26,6 +30,9 @@ namespace Enigma
         {
             ignoreMousebtn = false;
             flashlightOn = false;
+
+            flashlightLight = flashlightGo.GetComponent<Light>();
+            flashlightSnd = flashlightGo.GetComponent<AudioSource>();
         }
 
         void Update()
@@ -34,7 +41,7 @@ namespace Enigma
                 ignoreMousebtn = false;
             else
             {
-                if (!Inventory.Singleton.IsShown && !UIHandler.Singleton.PopUpIsOpen && !LevelHandler.Singleton.IsLockCipherActive)
+                if (!Inventory.Singleton.IsShown && !UIHandler.Singleton.PopUpIsOpen && !LevelHandler.Singleton.IsMiniGameActive)
                 {
                     if (Input.GetMouseButtonUp(0))
                         raycastForInteraction();
@@ -43,7 +50,8 @@ namespace Enigma
                         if(Inventory.Singleton.ItemExists(ItemIds.Item.Flashlight))
                         {
                             flashlightOn = !flashlightOn;
-                            flashlight.enabled = flashlightOn;
+                            flashlightLight.enabled = flashlightOn;
+                            flashlightSnd.Play();
                         }
                     }
                 }
@@ -71,6 +79,26 @@ namespace Enigma
             return hits;
         }
 
+        private void showMissingPartPopUp(Item tempItem)
+        {
+            int enigmaParts = Inventory.Singleton.GetAmountOfPartsOfEnigma();
+            switch (enigmaParts)
+            {
+                case 1:
+                    UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.Icon);
+                    break;
+                case 2:
+                    UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.Icon);
+                    Invoke("makeAlarm", Random.Range(3f, 5f));
+                    break;
+                case 3:
+                    UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.Icon);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void raycastForInteraction()
         {
             RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
@@ -86,22 +114,7 @@ namespace Enigma
                     {
                         if (tempItem.Id == ItemIds.Item.Enigma_Part1 || tempItem.Id == ItemIds.Item.Enigma_Part2 || tempItem.Id == ItemIds.Item.Enigma_Part3)
                         {
-                            int enigmaParts = Inventory.Singleton.GetAmountOfPartsOfEnigma();
-                            switch (enigmaParts)
-                            {
-                                case 1:
-                                    UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.Icon);
-                                    break;
-                                case 2:
-                                    UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.Icon);
-                                    Invoke("makeAlarm", Random.Range(3f, 5f));
-                                    break;
-                                case 3:
-                                    UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.Icon);
-                                    break;
-                                default:
-                                    break;
-                            }
+                            showMissingPartPopUp(tempItem);
                         }
                         else
                         {
@@ -118,10 +131,11 @@ namespace Enigma
                     if(lockCypher)
                     {
                         lockCypher.IsActive = true;
-                        LevelHandler.Singleton.UpdateLockCipherActive(true);
+                        LevelHandler.Singleton.UpdateMiniGameActive(true);
+                        LevelHandler.Singleton.cypherActive = true;
                         // disable character movement, disable cursor, disable inventory.
-                        LeanTween.move(Camera.main.gameObject, lockCypher.CamPlaceHolder.transform.position, cameraTransitionDuration);
-                        LeanTween.rotate(Camera.main.gameObject, lockCypher.CamPlaceHolder.transform.rotation.eulerAngles, cameraTransitionDuration);
+                        LeanTween.move(Camera.main.gameObject, lockCypher.GetCamPosition(), cameraTransitionDuration);
+                        LeanTween.rotate(Camera.main.gameObject, lockCypher.GetCamRotation().eulerAngles, cameraTransitionDuration);
                         lockCypher.OnSolved += lockCypherSolved;
                         lockCypher.OnExitted += lockCypherExitted;
                         break;
@@ -163,6 +177,9 @@ namespace Enigma
                             case "SM_SteelDoor":
                                 UIHandler.Singleton.ShowPopUp("I have to take the machine first... It’s important.", null);
                                 return;
+                            case "SM_Window":
+                                initiateHiddenObjectGame(hit.transform.gameObject);
+                                return;
                             default:
                                 break;
                         }
@@ -172,10 +189,28 @@ namespace Enigma
             }
         }
 
+        private void initiateHiddenObjectGame(GameObject go)
+        {
+            hiddenObjectGame = go.GetComponent<HiddenObjectGame>();
+
+            if (hiddenObjectGame)
+            {
+                hiddenObjectGame.IsActive = true;
+                LevelHandler.Singleton.UpdateMiniGameActive(true);
+                LevelHandler.Singleton.hiddenObjectGameActive = true;
+                // disable character movement, disable cursor, disable inventory.
+                LeanTween.move(Camera.main.gameObject, hiddenObjectGame.GetCamPosition(), cameraTransitionDuration);
+                LeanTween.rotate(Camera.main.gameObject, hiddenObjectGame.GetCamRotation().eulerAngles, cameraTransitionDuration);
+                hiddenObjectGame.OnSolved += hiddenObjectGameSolved;
+                hiddenObjectGame.OnExitted += hiddenObjectGameExitted;
+            }
+        }
+
         private void lockCypherSolved()
         {
             Debug.Log("[CharacterHandler] Lock cypher solved.");
-            LevelHandler.Singleton.UpdateLockCipherActive(false);
+            LevelHandler.Singleton.UpdateMiniGameActive(false);
+            LevelHandler.Singleton.cypherActive = false;
             lockCypher.OnSolved -= lockCypherSolved;
             lockCypher.OnExitted -= lockCypherExitted;
             lockCypher.IsActive = false;
@@ -186,10 +221,35 @@ namespace Enigma
         private void lockCypherExitted()
         {
             Debug.Log("[CharacterHandler] Lock cypher exitted.");
-            LevelHandler.Singleton.UpdateLockCipherActive(false);
+            LevelHandler.Singleton.UpdateMiniGameActive(false);
+            LevelHandler.Singleton.cypherActive = false;
             lockCypher.OnSolved -= lockCypherSolved;
             lockCypher.OnExitted -= lockCypherExitted;
             lockCypher.IsActive = false;
+            LeanTween.move(Camera.main.gameObject, cameraPlaceholder.transform.position, cameraTransitionDuration);
+            LeanTween.rotate(Camera.main.gameObject, cameraPlaceholder.transform.rotation.eulerAngles, cameraTransitionDuration);
+        }
+
+        private void hiddenObjectGameSolved()
+        {
+            Debug.Log("[CharacterHandler] Hidden object game solved.");
+            LevelHandler.Singleton.UpdateMiniGameActive(false);
+            LevelHandler.Singleton.hiddenObjectGameActive = false;
+            hiddenObjectGame.OnSolved -= lockCypherSolved;
+            hiddenObjectGame.OnExitted -= lockCypherExitted;
+            hiddenObjectGame.IsActive = false;
+            LeanTween.move(Camera.main.gameObject, cameraPlaceholder.transform.position, cameraTransitionDuration);
+            LeanTween.rotate(Camera.main.gameObject, cameraPlaceholder.transform.rotation.eulerAngles, cameraTransitionDuration);
+        }
+
+        private void hiddenObjectGameExitted()
+        {
+            Debug.Log("[CharacterHandler] Lock cypher exitted.");
+            LevelHandler.Singleton.UpdateMiniGameActive(false);
+            LevelHandler.Singleton.hiddenObjectGameActive = false;
+            hiddenObjectGame.OnSolved -= lockCypherSolved;
+            hiddenObjectGame.OnExitted -= lockCypherExitted;
+            hiddenObjectGame.IsActive = false;
             LeanTween.move(Camera.main.gameObject, cameraPlaceholder.transform.position, cameraTransitionDuration);
             LeanTween.rotate(Camera.main.gameObject, cameraPlaceholder.transform.rotation.eulerAngles, cameraTransitionDuration);
         }

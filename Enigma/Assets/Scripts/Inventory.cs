@@ -161,7 +161,7 @@ namespace Enigma
 
         void Update()
         {
-            if (!LevelHandler.Singleton.IsLockCipherActive)
+            if (!LevelHandler.Singleton.IsMiniGameActive)
             {
                 if (Input.GetKeyUp(KeyCode.I))
                 {

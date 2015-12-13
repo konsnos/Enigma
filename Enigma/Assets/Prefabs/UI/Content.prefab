@@ -136,7 +136,6 @@ MonoBehaviour:
   id: 0
   icon: {fileID: 0}
   popUpMessage: 
-  popUpSprite: {fileID: 0}
 --- !u!222 &22285410
 CanvasRenderer:
   m_ObjectHideFlags: 1
