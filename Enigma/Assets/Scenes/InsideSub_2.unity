@@ -876,6 +876,22 @@ Prefab:
       propertyPath: bloomIntensity
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11454492, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
+      propertyPath: intensity
+      value: 0.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 11454492, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
+      propertyPath: chromaticAberration
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445464, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
+      propertyPath: intensityMultiplier
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2072812, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
+      propertyPath: m_HDR
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
   m_IsPrefabParent: 0
@@ -6865,6 +6881,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 21508554, guid: 671900d17e701f8468ab0b3bc9d9152d, type: 2}
+      propertyPath: m_Resolution
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 671900d17e701f8468ab0b3bc9d9152d, type: 2}
   m_IsPrefabParent: 0
@@ -8348,7 +8368,7 @@ MonoBehaviour:
   hiddenObjectGameActive: 0
   enableAlarm: 0
   enableEnd: 0
-  skipIntro: 0
+  skipIntro: 1
   movImage: {fileID: 1187585168}
   movAudioSrc: {fileID: 1187585170}
   introMov: {fileID: 15200000, guid: 3703d9adf039f8f459362db6d3fab8e8, type: 3}

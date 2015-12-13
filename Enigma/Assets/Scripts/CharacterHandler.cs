@@ -137,7 +137,7 @@ namespace Enigma
                 {
                     lockCypher = hit.transform.GetComponent<LockCypher>();
 
-                    if(lockCypher)
+                    if(lockCypher && !lockCypher.IsSolved)
                     {
                         lockCypher.IsActive = true;
                         LevelHandler.Singleton.UpdateMiniGameActive(true);
