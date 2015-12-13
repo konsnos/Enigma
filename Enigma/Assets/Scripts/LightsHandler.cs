@@ -9,6 +9,8 @@ namespace Enigma
         private Light[] normalLights;
         [SerializeField]
         private Light[] alarmLights;
+        [SerializeField]
+        private GameObject[] emmissionLights;
 
         [SerializeField]
         private float alarmMaxIntensity;
@@ -20,6 +22,18 @@ namespace Enigma
         {
             foreach (Light light in normalLights)
                 light.gameObject.SetActive(false);
+            // Hide emmision
+            foreach(GameObject goLight in emmissionLights)
+            {
+                Renderer rend = goLight.GetComponent<Renderer>();
+                if(rend)
+                {
+                    foreach(Material mat in rend.sharedMaterials)
+                    {
+                        mat.SetColor("_EmissionColor", Color.black);
+                    }
+                }
+            }
 
             Invoke("openAlarmLights", 2f);
         }

@@ -57,7 +57,7 @@ public class LevelHandler : MonoBehaviour
         fpsController.IsActive = false;
         helpTxt.SetActive(true);
 
-        //Invoke("EnableAlarm", 3f);
+        Invoke("EnableAlarm", 3f);
     }
 
     void Update()
