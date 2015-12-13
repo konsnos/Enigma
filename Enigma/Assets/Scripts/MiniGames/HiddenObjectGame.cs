@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Enigma.Sound;
 
 namespace Enigma.MiniGames
 {
@@ -102,6 +103,7 @@ namespace Enigma.MiniGames
                                     Debug.Log("[HiddenObjectGame] Checklist found " + checklist[i].id);
                                     checklist[i].ItemFound();
                                     itemSlot.Remove();
+                                    Click.Singleton.PlaySound();
                                     found = true;
                                     break;
                                 }
@@ -122,7 +124,7 @@ namespace Enigma.MiniGames
                                 timer.color = Color.red;
                                 CancelInvoke("returnTimerToWhite");
                                 Invoke("returnTimerToWhite", 0.5f);
-                                // play wrong sound.
+                                ClickWrong.Singleton.PlaySound();
                             }
                             break;
                         }

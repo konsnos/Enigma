@@ -2,6 +2,7 @@
 using System.Collections;
 using Enigma.UserInterface;
 using Enigma.MiniGames;
+using Enigma.Sound;
 
 namespace Enigma
 {
@@ -46,10 +47,13 @@ namespace Enigma
                 if (!Inventory.Singleton.IsShown && !UIHandler.Singleton.PopUpIsOpen && !LevelHandler.Singleton.IsMiniGameActive)
                 {
                     if (Input.GetMouseButtonUp(0))
-                        raycastForInteraction();
-                    else if(Input.GetKeyUp(KeyCode.F))
                     {
-                        if(Inventory.Singleton.ItemExists(ItemIds.Item.Flashlight))
+                        raycastForInteraction();
+                        Click.Singleton.PlaySound();
+                    }
+                    else if (Input.GetKeyUp(KeyCode.F))
+                    {
+                        if (Inventory.Singleton.ItemExists(ItemIds.Item.Flashlight))
                         {
                             flashlightOn = !flashlightOn;
                             flashlightLight.enabled = flashlightOn;

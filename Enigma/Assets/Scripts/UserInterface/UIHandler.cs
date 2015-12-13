@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Enigma.Sound;
 
 namespace Enigma.UserInterface
 {
@@ -83,6 +84,7 @@ namespace Enigma.UserInterface
                 dragT.position = Input.mousePosition;
                 if (Input.GetMouseButtonUp(0))
                 {
+                    Click.Singleton.PlaySound();
                     RaycastHit[] hits = CharacterHandler.GetHits(Input.mousePosition, 1 << Layers.Interaction, 3f);
 
                     foreach(RaycastHit hit in hits)
