@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.2
+  m_AmbientIntensity: 0.05
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.03
@@ -854,23 +854,23 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 415bdc32dcb2b024d95e604ec96b0699, type: 3}
     - target: {fileID: 11442620, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11495370, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11422976, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11445464, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11454492, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11442620, guid: 4c6b896d705e6174584aa94d07f3e434, type: 2}
       propertyPath: bloomIntensity
@@ -8368,7 +8368,7 @@ MonoBehaviour:
   hiddenObjectGameActive: 0
   enableAlarm: 0
   enableEnd: 0
-  skipIntro: 1
+  skipIntro: 0
   movImage: {fileID: 1187585168}
   movAudioSrc: {fileID: 1187585170}
   introMov: {fileID: 15200000, guid: 3703d9adf039f8f459362db6d3fab8e8, type: 3}

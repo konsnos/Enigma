@@ -2,6 +2,7 @@
 using Enigma.UserInterface;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -115,6 +116,13 @@ public class LevelHandler : MonoBehaviour
         movAudioSrc.Play();
         moviePlaying = true;
         updateCursor();
+
+        Invoke("backToMenu", outroAudioClip.length);
+    }
+
+    private void backToMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 
     void fadeInMov()
