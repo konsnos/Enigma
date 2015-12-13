@@ -1,54 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &158858
+--- !u!1 &120044
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 422682}
-  - 33: {fileID: 3306118}
-  - 65: {fileID: 6595852}
-  - 23: {fileID: 2369620}
-  - 114: {fileID: 11459070}
+  - 4: {fileID: 471872}
+  - 33: {fileID: 3370372}
+  - 23: {fileID: 2391486}
+  - 65: {fileID: 6553874}
+  - 114: {fileID: 11418696}
   m_Layer: 8
-  m_Name: Item 3
+  m_Name: SM_MissingPart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &422682
+--- !u!4 &471872
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158858}
+  m_GameObject: {fileID: 120044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9609768, y: 1.2318552, z: -1.2932901}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.009709079, y: 0.23286432, z: 5.479895}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2369620
+--- !u!23 &2391486
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158858}
+  m_GameObject: {fileID: 120044}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6af26d535a323944aa3f683baa947276, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
@@ -57,38 +57,40 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3306118
+--- !u!33 &3370372
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158858}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6595852
+  m_GameObject: {fileID: 120044}
+  m_Mesh: {fileID: 4300000, guid: 4e4d2315443c40244a76bf412d7bed01, type: 3}
+--- !u!65 &6553874
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158858}
+  m_GameObject: {fileID: 120044}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11459070
+  m_Size: {x: 22.39804, y: 3.5779881, z: 31.782692}
+  m_Center: {x: 0, y: 1.6930354, z: 0}
+--- !u!114 &11418696
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 158858}
+  m_GameObject: {fileID: 120044}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5119d748a373274799738a24d74f506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
-  icon: {fileID: 21300000, guid: 4a0e98175b51ada4c8fb258cb5d8a5e2, type: 3}
+  icon: {fileID: 21300000, guid: 24dbe2410ca406545af074f4c2df3518, type: 3}
+  popUpMessage: 
+  popUpSprite: {fileID: 21300000, guid: 24dbe2410ca406545af074f4c2df3518, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -97,15 +99,16 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
-      propertyPath: id
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 21300000, guid: 4a0e98175b51ada4c8fb258cb5d8a5e2,
+      objectReference: {fileID: 21300000, guid: 24dbe2410ca406545af074f4c2df3518,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: popUpSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24dbe2410ca406545af074f4c2df3518,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 158858}
+  m_RootGameObject: {fileID: 120044}
   m_IsPrefabParent: 1

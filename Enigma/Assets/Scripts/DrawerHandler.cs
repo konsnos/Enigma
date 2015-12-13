@@ -10,7 +10,7 @@ namespace Enigma
         [SerializeField]
         private Vector3 interactionPosition;
 
-        private static float interactionDuration = 1f;
+        private static float interactionDuration = 0.5f;
 
         [SerializeField]
         private bool isActive;

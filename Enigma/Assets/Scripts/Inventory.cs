@@ -160,6 +160,11 @@ namespace Enigma
                     else
                         closeInventory();
                 }
+                else if(Input.GetKeyUp(KeyCode.Escape))
+                {
+                    if (isShown)
+                        closeInventory();
+                }
             }
         }
 

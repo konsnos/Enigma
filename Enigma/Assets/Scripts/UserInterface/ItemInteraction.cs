@@ -32,6 +32,7 @@ namespace Enigma.UserInterface
         {
             if(pointerDown && !pointerExit) // Show pop up
             {
+                pointerDown = false;
                 UIHandler.Singleton.ShowPopUp(item.PopUpMessage, item.PopUpSprite);
                 Debug.Log("[ItemInteraction] On pointer up. Show pop up");
             }

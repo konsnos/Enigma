@@ -20,6 +20,9 @@ public class LevelHandler : MonoBehaviour
     [SerializeField]
     private SoundsHandler soundsHandler;
 
+    [SerializeField]
+    private GameObject helpTxt;
+
     private bool isLockCipherActive;
 
     public bool IsLockCipherActive
@@ -51,8 +54,19 @@ public class LevelHandler : MonoBehaviour
             Inventory.Singleton.AddItem((itemToAdd[i] as GameObject).GetComponent<Item>());
 
         updateCursor();
+        fpsController.IsActive = false;
+        helpTxt.SetActive(true);
 
         //Invoke("EnableAlarm", 3f);
+    }
+
+    void Update()
+    {
+        if (helpTxt.activeSelf && Input.anyKeyDown)
+        {
+            helpTxt.SetActive(false);
+            fpsController.IsActive = true;
+        }
     }
 
     /// <summary>
