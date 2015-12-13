@@ -85,7 +85,7 @@ namespace Enigma
         {
             GameObject newSprite = Instantiate(contentChild);
             newSprite.transform.SetParent(contentParent.transform, false);
-            newSprite.GetComponent<Item>().SetItem(item.Id, item.Icon, item.PopUpMessage, item.PopUpSprite);
+            newSprite.GetComponent<Item>().SetItem(item.Id, item.Icon, item.PopUpMessage);
             newSprite.GetComponent<Image>().sprite = item.Icon;
             itemContents.Add(newSprite);
 

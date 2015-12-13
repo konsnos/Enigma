@@ -70,7 +70,7 @@ namespace Enigma
                 if(tempItem)
                 {
                     Inventory.Singleton.AddItem(tempItem);
-                    if (tempItem.PopUpMessage != "" || tempItem.PopUpSprite != null)
+                    if (tempItem.PopUpMessage != "" || tempItem.Icon != null)
                     {
                         if (tempItem.Id == ItemIds.Item.Enigma_Part1 || tempItem.Id == ItemIds.Item.Enigma_Part2 || tempItem.Id == ItemIds.Item.Enigma_Part3)
                         {
@@ -78,14 +78,14 @@ namespace Enigma
                             switch (enigmaParts)
                             {
                                 case 1:
-                                    UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.PopUpSprite);
+                                    UIHandler.Singleton.ShowPopUp("I found a missing part! Good!", tempItem.Icon);
                                     break;
                                 case 2:
-                                    UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.PopUpSprite);
+                                    UIHandler.Singleton.ShowPopUp("One more piece to go! Great!", tempItem.Icon);
                                     Invoke("makeAlarm", Random.Range(3f, 5f));
                                     break;
                                 case 3:
-                                    UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.PopUpSprite);
+                                    UIHandler.Singleton.ShowPopUp("I have all parts now! Let’s take the machine...", tempItem.Icon);
                                     break;
                                 default:
                                     break;
@@ -93,7 +93,7 @@ namespace Enigma
                         }
                         else
                         {
-                            UIHandler.Singleton.ShowPopUp(tempItem.PopUpMessage, tempItem.PopUpSprite);
+                            UIHandler.Singleton.ShowPopUp(tempItem.PopUpMessage, tempItem.Icon);
                         }
                     }
                     Destroy(hit.transform.gameObject);

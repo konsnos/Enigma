@@ -1117,7 +1117,7 @@ Transform:
   - {fileID: 422335648}
   - {fileID: 1479665633}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
 --- !u!1 &319465705 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: a83545aca9f9dea4db9f3e3e177fb1b6, type: 3}
@@ -3240,7 +3240,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
 --- !u!1 &970288693
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,7 +3313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.50735295, g: 0.37356818, b: 0.02238321, a: 0.392}
+  m_Color: {r: 0.35294116, g: 0.33432764, b: 0.28546712, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3409,7 +3409,7 @@ Transform:
   - {fileID: 2144563901}
   - {fileID: 1362968027}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
 --- !u!4 &998063237 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a83545aca9f9dea4db9f3e3e177fb1b6, type: 3}
@@ -3702,6 +3702,82 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 77.72, y: 7.5, z: 202.86}
   m_Center: {x: -37.2, y: -47.1, z: 0}
+--- !u!1001 &1188223786
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.654
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.577
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.028354056
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.1385845
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0016434938
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98994327
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+  m_IsPrefabParent: 0
+--- !u!1 &1188223787 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: ade944f9d80c55a43a7f99837bb8635c, type: 3}
+  m_PrefabInternal: {fileID: 1188223786}
+--- !u!65 &1188223788
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1188223787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.052353, y: 17.036434, z: 54.732788}
+  m_Center: {x: -0.0000019073486, y: 8.871717, z: -0.0000038146973}
+--- !u!114 &1188223789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1188223787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5119d748a373274799738a24d74f506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 8
+  icon: {fileID: 21300000, guid: f47de33dc4500bf469f3508b98dffceb, type: 3}
+  popUpMessage: Use 'F' key to turn flashlight on/off.
 --- !u!1 &1212676942
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,7 +3838,7 @@ Transform:
   - {fileID: 1772999001}
   - {fileID: 105378776}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
 --- !u!1001 &1219843414
 Prefab:
   m_ObjectHideFlags: 0
@@ -4631,7 +4707,7 @@ Transform:
   - {fileID: 1012152170}
   - {fileID: 1419524068}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
 --- !u!4 &1409767230 stripped
 Transform:
   m_PrefabParentObject: {fileID: 467480, guid: 429cad58e2337dd4dbe137fa820b5bab, type: 2}
@@ -5269,7 +5345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &1531394645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6592,7 +6668,7 @@ Transform:
   m_LocalScale: {x: 0.72877586, y: 0.72877586, z: 0.72877586}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 25
 --- !u!1 &1840114452
 GameObject:
   m_ObjectHideFlags: 0
@@ -6921,7 +6997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6544118, g: 0.36952874, b: 0, a: 1}
+  m_Color: {r: 0.19852942, g: 0.16167161, b: 0.11386246, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7018,7 +7094,7 @@ Transform:
   - {fileID: 356231537}
   - {fileID: 560358028}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
 --- !u!1001 &1948709565
 Prefab:
   m_ObjectHideFlags: 0
@@ -7130,7 +7206,7 @@ Transform:
   m_Children:
   - {fileID: 558295511}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
 --- !u!1001 &1966666585
 Prefab:
   m_ObjectHideFlags: 0
