@@ -6,18 +6,18 @@ namespace Enigma.MiniGames
     public class HiddenObjectItemSlot : MonoBehaviour
     {
         [SerializeField]
-        private ItemSlotIds.Item Id;
+        private ItemSlotIds.Item id;
         /// <summary>
         /// Collider of the object to disable if the object is removed.
         /// </summary>
         private Collider col;
         [SerializeField]
         private GameObject itemGo;
-        /// <summary>
-        /// Position of the camera when this minigame is played.
-        /// </summary>
-        [SerializeField]
-        private GameObject camPlaceHolder;
+
+        public ItemSlotIds.Item Id
+        {
+            get { return id; }
+        }
 
         void Awake()
         {
@@ -32,6 +32,7 @@ namespace Enigma.MiniGames
         public void Remove()
         {
             itemGo.SetActive(false);
+            // play found sound.
         }
     }
 }

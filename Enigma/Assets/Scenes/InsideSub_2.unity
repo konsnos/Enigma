@@ -1429,6 +1429,10 @@ Prefab:
       propertyPath: m_Name
       value: SM_Battery (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a27dd1763c0036d4ba5b21f433ef24b2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a27dd1763c0036d4ba5b21f433ef24b2, type: 3}
   m_IsPrefabParent: 0
@@ -1445,6 +1449,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 300845684}
   - 114: {fileID: 300845685}
+  - 65: {fileID: 300845686}
   m_Layer: 9
   m_Name: Blue Book Slot
   m_TagString: Untagged
@@ -1476,8 +1481,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 6
+  id: 0
   itemGo: {fileID: 1855965283}
+--- !u!65 &300845686
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 300845683}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.94, y: 26.12, z: 19.72}
+  m_Center: {x: 0, y: 12.1, z: 0}
 --- !u!1001 &308945981
 Prefab:
   m_ObjectHideFlags: 0
@@ -1934,7 +1951,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 389878947}
   - 114: {fileID: 389878948}
-  m_Layer: 0
+  - 65: {fileID: 389878949}
+  m_Layer: 9
   m_Name: Red Battery Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1965,8 +1983,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 4
+  id: 0
   itemGo: {fileID: 1019156588}
+--- !u!65 &389878949
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389878946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.65, y: 29.9, z: 16.4}
+  m_Center: {x: 0, y: 14.1, z: 0}
 --- !u!108 &405436441 stripped
 Light:
   m_PrefabParentObject: {fileID: 10833768, guid: 429cad58e2337dd4dbe137fa820b5bab,
@@ -2219,6 +2249,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 483631865}
   - 114: {fileID: 483631866}
+  - 65: {fileID: 483631867}
   m_Layer: 9
   m_Name: Folder Slot
   m_TagString: Untagged
@@ -2250,8 +2281,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 5
+  id: 0
   itemGo: {fileID: 1898355444}
+--- !u!65 &483631867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 483631864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 51.88, y: 2, z: 68.12}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &497063225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,7 +2312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!92 &497063227
 Behaviour:
   m_ObjectHideFlags: 0
@@ -4757,6 +4800,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 988037318}
   - 114: {fileID: 988037319}
+  - 65: {fileID: 988037320}
   m_Layer: 9
   m_Name: Yellow Battery Slot
   m_TagString: Untagged
@@ -4788,8 +4832,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 2
+  id: 0
   itemGo: {fileID: 993101165}
+--- !u!65 &988037320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988037317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.39, y: 30.9, z: 16.1}
+  m_Center: {x: 0, y: 14.2, z: 0}
 --- !u!1 &988734557 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 117728, guid: 37cf085422ef27d4f8f550bec53df976, type: 2}
@@ -5142,6 +5198,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 73c071a09878b3e4392fdd2dbdb90b4a, type: 2}
+    - target: {fileID: 100000, guid: a27dd1763c0036d4ba5b21f433ef24b2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a27dd1763c0036d4ba5b21f433ef24b2, type: 3}
   m_IsPrefabParent: 0
@@ -6676,7 +6736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1388051116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7724,6 +7784,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: afacabd89ed50d14181d4c5e595bfc9f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afacabd89ed50d14181d4c5e595bfc9f, type: 3}
   m_IsPrefabParent: 0
@@ -7848,6 +7912,8 @@ MonoBehaviour:
   lightsHandler: {fileID: 1531394646}
   soundsHandler: {fileID: 1531394647}
   helpTxt: {fileID: 824686916}
+  cypherActive: 0
+  hiddenObjectGameActive: 0
 --- !u!114 &1531394646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8295,6 +8361,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1606215929}
   - 114: {fileID: 1606215930}
+  - 65: {fileID: 1606215931}
   m_Layer: 9
   m_Name: Flashlight Slot
   m_TagString: Untagged
@@ -8326,8 +8393,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 0
+  id: 0
   itemGo: {fileID: 560915026}
+--- !u!65 &1606215931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606215928}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20.24, y: 20, z: 55.09}
+  m_Center: {x: 0, y: 9.85, z: 0}
 --- !u!1001 &1614129791
 Prefab:
   m_ObjectHideFlags: 0
@@ -8508,7 +8587,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1664368069}
   - 114: {fileID: 1664368070}
-  m_Layer: 0
+  - 65: {fileID: 1664368071}
+  m_Layer: 9
   m_Name: Enigma Button Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8539,8 +8619,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 1
+  id: 0
   itemGo: {fileID: 1849367595}
+--- !u!65 &1664368071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664368068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.13, y: 6.81, z: 12.18}
+  m_Center: {x: 0, y: 2.25, z: 0}
 --- !u!4 &1667291550 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a83545aca9f9dea4db9f3e3e177fb1b6, type: 3}
@@ -8827,7 +8919,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1724165387}
   - 114: {fileID: 1724165388}
-  m_Layer: 0
+  - 65: {fileID: 1724165389}
+  m_Layer: 9
   m_Name: Blue Battery Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8858,8 +8951,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143fccfd3ba75474cbfe158645f2a0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 3
+  id: 0
   itemGo: {fileID: 275097204}
+--- !u!65 &1724165389
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1724165386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 15.9, y: 30.6, z: 15.94}
+  m_Center: {x: 0, y: 14.16, z: 0}
 --- !u!4 &1731803986 stripped
 Transform:
   m_PrefabParentObject: {fileID: 458784, guid: f62d61ae685051849963084c5d5819b8, type: 2}
@@ -9843,6 +9948,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 320b38e3b670c5749b254c6ac8a44753, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 320b38e3b670c5749b254c6ac8a44753, type: 3}
   m_IsPrefabParent: 0
@@ -10119,11 +10228,15 @@ MonoBehaviour:
   - {fileID: 389878948}
   - {fileID: 1724165388}
   - {fileID: 300845685}
+  panel: {fileID: 0}
   checklist:
   - {fileID: 1985066966}
   - {fileID: 322369475}
   - {fileID: 106177383}
   - {fileID: 1633049703}
+  timer: {fileID: 1138881584}
+  camPlaceHolder: {fileID: 1564213417}
+  light: {fileID: 1319626931}
 --- !u!65 &1874141682
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11097,15 +11210,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.009709079
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.23286432
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 5.479895
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11127,7 +11240,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 471872, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120044, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6553874, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
+    - {fileID: 2391486, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
+    - {fileID: 3370372, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b298ff9e61c0ca44395a384b85630fdc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &2021781959

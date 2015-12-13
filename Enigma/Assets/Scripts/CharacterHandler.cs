@@ -18,6 +18,8 @@ namespace Enigma
         private LockCypher lockCypher;
         private HiddenObjectGame hiddenObjectGame;
         [SerializeField]
+        private Item itemEarnedFromHiddenObjectGame;
+        [SerializeField]
         private GameObject flashlightGo;
         private Light flashlightLight;
         private AudioSource flashlightSnd;
@@ -68,12 +70,11 @@ namespace Enigma
             LevelHandler.Singleton.EnableAlarm();
         }
 
-        public static RaycastHit[] GetHits(Vector3 screenPoint)
+        public static RaycastHit[] GetHits(Vector3 screenPoint, LayerMask mask)
         {
             RaycastHit[] hits;
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
 
-            LayerMask mask = 1 << Layers.Interaction;
             hits = Physics.RaycastAll(ray, 3f, mask);
             Debug.Log("[CharacterHandler] Hits " + hits.Length);
             return hits;
@@ -101,7 +102,7 @@ namespace Enigma
 
         private void raycastForInteraction()
         {
-            RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f));
+            RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f), 1 << Layers.Interaction);
             Item tempItem;
             foreach(RaycastHit hit in hits)
             {
@@ -240,6 +241,9 @@ namespace Enigma
             hiddenObjectGame.IsActive = false;
             LeanTween.move(Camera.main.gameObject, cameraPlaceholder.transform.position, cameraTransitionDuration);
             LeanTween.rotate(Camera.main.gameObject, cameraPlaceholder.transform.rotation.eulerAngles, cameraTransitionDuration);
+
+            Inventory.Singleton.AddItem(itemEarnedFromHiddenObjectGame);
+            showMissingPartPopUp(itemEarnedFromHiddenObjectGame);
         }
 
         private void hiddenObjectGameExitted()
