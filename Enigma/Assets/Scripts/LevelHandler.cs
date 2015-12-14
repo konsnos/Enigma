@@ -90,6 +90,7 @@ public class LevelHandler : MonoBehaviour
             movOnFadedOut();
         else
         {
+            movImage.gameObject.SetActive(true);
             movImage.texture = introMov;
             movAudioSrc.clip = introAudioClip;
             introMov.Play();

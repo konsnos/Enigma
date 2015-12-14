@@ -10,6 +10,8 @@ namespace Enigma
         [SerializeField]
         private Light[] alarmLights;
         [SerializeField]
+        private Renderer[] alarmEmmissionLights;
+        [SerializeField]
         private GameObject[] emmissionLights;
 
         [SerializeField]
@@ -53,6 +55,12 @@ namespace Enigma
 
         private void updateLightIntensity(float value)
         {
+            if (alarmEmmissionLights.Length > 0)
+            {
+                float colorValue = value / alarmMaxIntensity;
+                Color emmissionCol = new Color(colorValue, colorValue, colorValue);
+                alarmEmmissionLights[0].sharedMaterial.SetColor("_EmissionColor", emmissionCol);
+            }
             foreach (Light light in alarmLights)
             {
                 light.intensity = value;
