@@ -29,8 +29,6 @@ namespace Enigma.UserInterface
         [SerializeField]
         private Text popUpText;
         [SerializeField]
-        private GameObject hiddenObjectGameHelp;
-        [SerializeField]
         private GameObject crosshair;
 
         /*********** DRAG *******/
@@ -70,11 +68,6 @@ namespace Enigma.UserInterface
         public void SetCrosshairActive(bool value)
         {
             crosshair.SetActive(value);
-        }
-
-        public void SetHiddenObjectGameHelp(bool value)
-        {
-            hiddenObjectGameHelp.SetActive(value);
         }
 
         void Update()

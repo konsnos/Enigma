@@ -4997,7 +4997,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 0}
+  m_SizeDelta: {x: 240, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &970288695
 MonoBehaviour:
@@ -5013,10 +5013,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentParent: {fileID: 1737203089}
   contentChild: {fileID: 159146, guid: 6723f1cbad8b6704cb5f3d031a2dad4c, type: 2}
-  spaceBetweenItems: -8
-  spriteHeight: -64
+  spaceBetweenItems: -16
+  spriteHeight: -128
   takeItemSnd: {fileID: 671780209}
-  openX: -120
+  openX: -240
   transitionSpeed: 0.4
 --- !u!114 &970288696
 MonoBehaviour:
@@ -7258,7 +7258,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1886009998}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7604,7 +7604,7 @@ MonoBehaviour:
   PopUpPanel: {fileID: 1840114452}
   popUpImg: {fileID: 1552032355}
   popUpText: {fileID: 777970970}
-  hiddenObjectGameHelp: {fileID: 0}
+  hiddenObjectGameHelp: {fileID: 1465258238}
   crosshair: {fileID: 544294371}
   dragImg: {fileID: 1551542177}
   dragT: {fileID: 1551542175}
@@ -7903,7 +7903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1465258239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9451,7 +9451,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -32.000103, y: -0.000091552734}
+  m_AnchoredPosition: {x: -28.500076, y: -0.000091552734}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1745298332
