@@ -12,7 +12,7 @@ namespace Enigma
         [SerializeField]
         private Renderer[] alarmEmmissionLights;
         [SerializeField]
-        private GameObject[] emmissionLights;
+        private Renderer[] emmissionLights;
 
         [SerializeField]
         private float alarmMaxIntensity;
@@ -21,21 +21,36 @@ namespace Enigma
         private float alarmDuration = 1f;
 
         /// before build enable emmission.
+        void Start()
+        {
+            Color initCol = new Color(0.1f, 0.1f, 0.1f);
+            foreach (Renderer rend in alarmEmmissionLights)
+            {
+                foreach(Material mat in rend.sharedMaterials)
+                {
+                    mat.SetColor("_EmissionColor", initCol);
+                }
+            }
+
+            foreach (Renderer rend in emmissionLights)
+            {
+                foreach (Material mat in rend.sharedMaterials)
+                {
+                    mat.SetColor("_EmissionColor", Color.white);
+                }
+            }
+        }
 
         public void EnableAlarms()
         {
             foreach (Light light in normalLights)
                 light.gameObject.SetActive(false);
             // Hide emmision
-            foreach(GameObject goLight in emmissionLights)
+            foreach (Renderer rend in emmissionLights)
             {
-                Renderer rend = goLight.GetComponent<Renderer>();
-                if(rend)
+                foreach(Material mat in rend.sharedMaterials)
                 {
-                    foreach(Material mat in rend.materials)
-                    {
-                        mat.SetColor("_EmissionColor", Color.black);
-                    }
+                    mat.SetColor("_EmissionColor", Color.black);
                 }
             }
 
