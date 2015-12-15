@@ -50,6 +50,25 @@ namespace Enigma.UserInterface
 
         private bool popUpIsOpen;
 
+        /// <summary>
+        /// Black background for outro.
+        /// </summary>
+        [SerializeField]
+        private GameObject outroGo;
+        /// <summary>
+        /// Audio for outro.
+        /// </summary>
+        private AudioSource outroAs;
+        /// <summary>
+        /// Reference to canvas group for alpha animation.
+        /// </summary>
+        private CanvasGroup outroCanvasGroup;
+        /// <summary>
+        /// Rect transform for credits.
+        /// </summary>
+        [SerializeField]
+        private RectTransform outroRT;
+
         private float popUpShowTS;
         private float popUpCloseIgnoreDuration = 0.5f;
 
@@ -63,6 +82,35 @@ namespace Enigma.UserInterface
             popUpIsOpen = false;
             Singleton = this;
             dragActive = false;
+
+            outroAs = outroGo.GetComponent<AudioSource>();
+            outroCanvasGroup = outroGo.GetComponent<CanvasGroup>();
+        }
+
+        void Start()
+        {
+            CharacterHandler.Singleton.OnGameWon += PlayOutro;
+        }
+
+        public void PlayOutro()
+        {
+            Debug.Log("[UIHandler] PlayOutro");
+            outroGo.SetActive(true);
+            LeanTween.value(outroGo, 0f, 1f, 1f).setOnUpdate(outroUpdate);
+            LeanTween.moveY(outroRT, outroRT.sizeDelta.y, 60f);
+            outroAs.Play();
+
+            Invoke("exitGame", outroAs.clip.length);
+        }
+
+        private void outroUpdate(float value)
+        {
+            outroCanvasGroup.alpha = value;
+        }
+
+        private void exitGame()
+        {
+            Application.Quit();
         }
 
         public void SetCrosshairActive(bool value)

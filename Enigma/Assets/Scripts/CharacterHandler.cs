@@ -108,6 +108,12 @@ namespace Enigma
             }
         }
 
+        public void InvokeGameWon()
+        {
+            if (OnGameWon != null)
+                OnGameWon();
+        }
+
         private void raycastForInteraction()
         {
             RaycastHit[] hits = GetHits(new Vector3(Screen.width / 2, Screen.height / 2, 0f), 1 << Layers.Interaction, 3f);
@@ -159,7 +165,7 @@ namespace Enigma
                                     Debug.Log("[CharacterController] Game won!!");
                                     if(OnGameWon != null)
                                         OnGameWon();
-                                } 
+                                }
                                 else
                                     UIHandler.Singleton.ShowPopUp("Some parts are missing! I have to find them. Quickly!", null);
                                 return;

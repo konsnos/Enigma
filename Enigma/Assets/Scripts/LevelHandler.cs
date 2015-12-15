@@ -47,10 +47,6 @@ public class LevelHandler : MonoBehaviour
     private MovieTexture introMov;
     [SerializeField]
     private AudioClip introAudioClip;
-    [SerializeField]
-    private MovieTexture outroMov;
-    [SerializeField]
-    private AudioClip outroAudioClip;
 
     public bool IsMiniGameActive
     {
@@ -84,7 +80,7 @@ public class LevelHandler : MonoBehaviour
         if(enableAlarm)
             Invoke("EnableAlarm", 3f);
         if(enableEnd)
-            Invoke("playOutroVideo", 8f);
+            Invoke("invokeGameWon", 8f);
 
         if(skipIntro)
             movOnFadedOut();
@@ -104,21 +100,16 @@ public class LevelHandler : MonoBehaviour
         helpTxt.SetActive(true);
     }
 
+    private void invokeGameWon()
+    {
+        CharacterHandler.Singleton.InvokeGameWon();
+    }
+
     private void playOutroVideo()
     {
         Debug.Log("[LevelHandler] playing outro video.");
 
         soundsHandler.FadeOutAlarm();
-
-        fadeInMov();
-        movImage.texture = outroMov;
-        movAudioSrc.clip = outroAudioClip;
-        outroMov.Play();
-        movAudioSrc.Play();
-        moviePlaying = true;
-        updateCursor();
-
-        Invoke("backToMenu", outroAudioClip.length);
     }
 
     private void backToMenu()
