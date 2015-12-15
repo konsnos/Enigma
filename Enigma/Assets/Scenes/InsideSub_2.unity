@@ -8465,8 +8465,6 @@ MonoBehaviour:
   movAudioSrc: {fileID: 1187585170}
   introMov: {fileID: 15200000, guid: 3703d9adf039f8f459362db6d3fab8e8, type: 3}
   introAudioClip: {fileID: 8300000, guid: 3703d9adf039f8f459362db6d3fab8e8, type: 3}
-  outroMov: {fileID: 15200000, guid: 25dcdab6d7d4ca944966ecc2e797f5df, type: 3}
-  outroAudioClip: {fileID: 8300000, guid: 25dcdab6d7d4ca944966ecc2e797f5df, type: 3}
 --- !u!114 &1531394646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11974,7 +11972,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "The recovered Enigma machine, its cipher keys, and the code books found
     on U-110 were taken to Bletchley Park in England. There, Alan Turing and all cryptographers'
-    teams, used them to successfully break the naval code.\r\n\r\n\nTHE END\r\n\r\n\ngame
+    teams, used them to successfully break the naval code.\r\n\r\n\nTHE END\r\n\r\n\n\ngame
     created for gi-Cluster Game Jam 2015\r\ntheme \u201Cenigma\u201D\r\n\r\n\nTeam
     Members\r\n\r\nEgkarchos Konstantinos (Programming)\r\nGiamarellou Caterina (Concept
     Art, Texturing, 2D Art, Level Layout, Sound Design)\r\nGiannakopoulou Aristi (Game

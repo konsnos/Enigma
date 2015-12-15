@@ -48,6 +48,8 @@ public class LevelHandler : MonoBehaviour
     [SerializeField]
     private AudioClip introAudioClip;
 
+    private bool gameEnded;
+
     public bool IsMiniGameActive
     {
         get { return isMiniGameActive; }
@@ -61,6 +63,7 @@ public class LevelHandler : MonoBehaviour
 
 	void Awake ()
     {
+        gameEnded = false;
         Singleton = this;
         isMiniGameActive = false;
         fpsController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
@@ -110,6 +113,7 @@ public class LevelHandler : MonoBehaviour
         Debug.Log("[LevelHandler] playing outro video.");
 
         soundsHandler.FadeOutAlarm();
+        gameEnded = true;
     }
 
     private void backToMenu()
@@ -142,7 +146,14 @@ public class LevelHandler : MonoBehaviour
 
     void Update()
     {
-        if (!moviePlaying && helpTxt.activeSelf && Input.anyKeyDown)
+        if(gameEnded)
+        {
+            if(Input.GetKeyUp(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+        else if (!moviePlaying && helpTxt.activeSelf && Input.anyKeyDown)
         {
             helpTxt.SetActive(false);
             fpsController.IsActive = true;
