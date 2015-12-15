@@ -9608,7 +9608,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000091552734}
+  m_AnchoredPosition: {x: -31.999931, y: -0.000091552734}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &1745298332
@@ -11936,7 +11936,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1800, y: 1500}
+  m_SizeDelta: {x: 1800, y: 1600}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2022969845
 MonoBehaviour:
@@ -11972,7 +11972,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "The recovered Enigma machine, its cipher keys, and the code books found
     on U-110 were taken to Bletchley Park in England. There, Alan Turing and all cryptographers'
-    teams, used them to successfully break the naval code.\r\n\r\n\nTHE END\r\n\r\n\n\ngame
+    teams, used them to successfully break the naval code.\r\n\r\n\nTHE END\r\n\r\n\ngame
     created for gi-Cluster Game Jam 2015\r\ntheme \u201Cenigma\u201D\r\n\r\n\nTeam
     Members\r\n\r\nEgkarchos Konstantinos (Programming)\r\nGiamarellou Caterina (Concept
     Art, Texturing, 2D Art, Level Layout, Sound Design)\r\nGiannakopoulou Aristi (Game
